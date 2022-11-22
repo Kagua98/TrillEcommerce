@@ -1,0 +1,14 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="37dp"
+    android:height="37dp"
+    android:viewportWidth="37"
+    android:viewportHeight="37">
+  <path
+      android:pathData="M18.5,18.5m-17.5,0a17.5,17.5 0,1 1,35 0a17.5,17.5 0,1 1,-35 0"
+      android:strokeWidth="2"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/color_social_button"/>
+  <path
+      android:pathData="M28.5174,13.5417C28.2761,12.5417 27.5119,11.75 26.5868,11.5C24.8574,11 18.0201,11 18.0201,11C18.0201,11 11.1426,11 9.4132,11.5C8.4881,11.75 7.7239,12.5417 7.4826,13.5417C7,15.2917 7,19.0417 7,19.0417C7,19.0417 7,22.75 7.4826,24.5417C7.7239,25.5417 8.4881,26.2917 9.4132,26.5417C11.1426,27 18.0201,27 18.0201,27C18.0201,27 24.8574,27 26.5868,26.5417C27.5119,26.2917 28.2761,25.5417 28.5174,24.5417C29,22.75 29,19.0417 29,19.0417C29,19.0417 29,15.2917 28.5174,13.5417ZM15.7678,22.4167V15.6667L21.479,19.0417L15.7678,22.4167Z"
+      android:fillColor="@color/color_social_button"/>
+</vector>

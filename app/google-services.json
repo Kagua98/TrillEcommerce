@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "527643784583",
+    "project_id": "trill-ecommerce",
+    "storage_bucket": "trill-ecommerce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:527643784583:android:cbede450c8e163e19f0f22",
+        "android_client_info": {
+          "package_name": "com.trill.ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "527643784583-q220hp89lba9dt3m2frt1pfn6g1m99sn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChauL7acYmDbK-Rxn0DRXUKux0KqJ-K0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "527643784583-q220hp89lba9dt3m2frt1pfn6g1m99sn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

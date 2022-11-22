@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.trill.ecommerce.screens.home.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <action
+        android:id="@+id/route_to_account_fragment"
+        app:destination="@id/navigation_account" />
+    <action
+        android:id="@+id/route_to_home_fragment"
+        app:destination="@id/navigation_home" />
+    <action
+        android:id="@+id/route_to_menu_list_fragment"
+        app:destination="@id/navigation_menu_list" />
+    <action
+        android:id="@+id/route_to_menu_fragment"
+        app:destination="@id/navigation_menu" />
+    <action
+        android:id="@+id/route_to_account_contact_support"
+        app:destination="@id/navigation_account_contact_support"/>
+    <action
+        android:id="@+id/route_to_account_profile"
+        app:destination="@id/navigation_account_profile"/>
+
+    <fragment
+        android:id="@+id/navigation_cart"
+        android:name="com.trill.ecommerce.screens.cart.CartFragment"
+        android:label="@string/title_cart"
+        tools:layout="@layout/fragment_cart" />
+
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.trill.ecommerce.screens.account.AccountFragment"
+        android:label="@string/title_account"
+        tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/navigation_menu"
+        android:name="com.trill.ecommerce.screens.menu.MenuFragment"
+        android:label="@string/item_categories_title"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_navigation_menu_to_navigation_menu_list"
+            app:destination="@id/navigation_menu_list" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_menu_list"
+        android:name="com.trill.ecommerce.screens.menu.MenuListFragment"
+        android:label="@string/menu_item_list_title"
+        tools:layout="@layout/fragment_menu_list" />
+
+    <fragment
+        android:id="@+id/navigation_item_details"
+        android:name="com.trill.ecommerce.screens.menu.ItemDetailsFragment"
+        android:label="@string/item_details_title"
+        tools:layout="@layout/fragment_item_details" />
+
+    <fragment
+        android:id="@+id/navigation_account_contact_support"
+        android:name="com.trill.ecommerce.screens.account.contactsupport.ContactSupportFragment"
+        android:label="@string/account_contact_support_title"
+        tools:layout="@layout/fragment_contact_support" />
+
+    <fragment
+        android:id="@+id/navigation_comments"
+        android:name="com.trill.ecommerce.screens.menu.comments.CommentsFragment"
+        android:label="@string/comments_title"
+        tools:layout="@layout/fragment_comments" />
+
+    <fragment
+        android:id="@+id/navigation_account_profile"
+        android:name="com.trill.ecommerce.screens.account.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile"/>
+</navigation>

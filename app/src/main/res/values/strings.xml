@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">Trill Ecommerce</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_cart">Cart</string>
+    <string name="title_account">Account</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="trill">Trill</string>
+    <string name="item_categories_title">Categories</string>
+    <string name="categories">Categories</string>
+    <string name="menu_item_list_title">Menu Items List</string>
+
+    <string name="company_title">TRILL</string>
+    <string name="company_subtitle">Professional Audio</string>
+    <string name="instagram_account_link">http://instagram.com/_u/xxx</string>
+
+    <string name="item_details_title">Item Details</string>
+    <string name="item_details_description_title">Description</string>
+    <string name="item_details_description_text_placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="item_details_comments_placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</string>
+    <string name="item_details_comments_name_placeholder">Name</string>
+
+    <string name="profile">Profile</string>
+
+
+    <string name="home_categories_title">Categories</string>
+    <string name="home_menu_title_hint">See All</string>
+    <string name="home_greeting_morning">Good Morning, </string>
+    <string name="home_greeting_afternoon">Good Afternoon, </string>
+    <string name="home_greeting_evening">Good Evening, </string>
+
+
+    <string name="account_contact_support_title">Contact Support</string>
+    <string name="history">History</string>
+
+
+    <string name="account_navbar_text">Hey there 👋</string>
+    <string name="account_button_logout">Logout</string>
+    <string name="account_contact_support_hint">Write to us about any comments, complaints or complements! We will get back to you as soon as possible.</string>
+    <string name="account_contact_support_button_text">Send Feedback</string>
+    <string name="account_contact_support_empty_message_error">Oops! Can\'t send an empty message.</string>
+    <string name="comments_title">Comments</string>
+
+    <string name="login_button_text">Login</string>
+    <string name="login_form_email">Email</string>
+    <string name="login_form_password">Password</string>
+    <string name="login_empty_email_field_error">Email cannot be empty</string>
+    <string name="login_empty_password_field_error">Password cannot be empty</string>
+
+    <string name="register_field_name_hint">Company Name</string>
+    <string name="register_field_phone_number_hint">Phone Number</string>
+    <string name="register_field_email_hint">Email Address</string>
+    <string name="register_field_password_hint">Password</string>
+    <string name="register_field_repeat_password_hint">Confirm Password</string>
+    <string name="register_button_text">Register</string>
+    <string name="register_login_description">Already have an account?</string>
+    <string name="register_text_login">Login.</string>
+    <string name="register_empty_name_field_error">Name cannot be empty</string>
+    <string name="register_empty_email_field_error">Email cannot be empty</string>
+    <string name="register_invalid_email_field_error">Invalid Email Address</string>
+    <string name="register_empty_phone_field_error">Phone number cannot be empty</string>
+    <string name="register_invalid_phone_field_error">Phone number is invalid</string>
+    <string name="register_empty_password_field_error">Password cannot be empty</string>
+    <string name="register_invalid_password_field_error">Password is too short</string>
+
+    <string name="login_form_phone">Phone Number</string>
+    <string name="login_signup_description">Don\'t have an account?</string>
+    <string name="login_text_signup">Sign Up Now.</string>
+    <string name="account_footer_terms_button"><![CDATA[Terms & Privacy Policy]]></string>
+</resources>
