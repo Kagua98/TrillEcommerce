@@ -5,5 +5,5 @@ class MenuCategoriesModel {
      var name: String? = null
      var description: String? = null
      var image: String? = null
-     var products: List<MenuItemsModel>? = null  //TODO(Change Name)
+     var products: List<MenuItemsModel>? = null
 }

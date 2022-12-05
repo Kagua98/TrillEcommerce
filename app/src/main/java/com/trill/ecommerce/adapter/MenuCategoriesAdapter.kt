@@ -39,7 +39,7 @@ class MenuCategoriesAdapter(
         init {
             parentName = itemView.findViewById(R.id.title) as TextView
             parentImage = itemView.findViewById(R.id.imageView) as ImageView
-            parentDescription = itemView.findViewById(R.id.subtitle) as TextView
+         // parentDescription = itemView.findViewById(R.id.subtitle) as TextView
             itemView.setOnClickListener(this)
         }
 

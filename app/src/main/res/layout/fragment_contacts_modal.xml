@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="20dp"
+    android:padding="@dimen/contact_support_modal_padding"
+    tools:context=".screens.account.contactsupport.ContactsModalFragment">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/colby_bold"
+        android:paddingStart="@dimen/contact_support_modal_title_padding_start"
+        android:paddingTop="@dimen/contact_support_modal_title_padding_top"
+        android:paddingEnd="@dimen/contact_support_modal_title_padding_end"
+        android:paddingBottom="@dimen/contact_support_modal_title_padding_bottom"
+        android:text="@string/contact_support_modal_title"
+        android:textColor="@color/contact_support_modal_title_color"
+        android:textSize="@dimen/contact_support_modal_title_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_regular"
+        android:paddingStart="@dimen/contact_support_modal_subtitle_padding_start"
+        android:paddingEnd="@dimen/contact_support_modal_subtitle_padding_end"
+        android:paddingBottom="@dimen/contact_support_modal_subtitle_padding_bottom"
+        android:text="@string/contact_support_modal_subtitle"
+        android:textSize="@dimen/contact_support_modal_subtitle_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitle">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="@string/contact_support_modal_phone_icon" />
+
+        <TextView
+            android:id="@+id/callHelpdeskPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="phone"
+            android:fontFamily="@font/colby_bold"
+            android:paddingStart="@dimen/contact_support_modal_phone_number_padding_start"
+            android:paddingTop="@dimen/contact_support_modal_phone_number_padding_top"
+            android:paddingEnd="@dimen/contact_support_modal_phone_number_padding_end"
+            android:text="@string/contact_support_office_phone_number"
+            android:textColor="@color/contact_support_modal_phone_number_color"
+            android:textColorHighlight="@color/brand_secondary"
+            android:textColorLink="@color/contact_support_modal_phone_number_color"
+            android:textSize="@dimen/contact_support_modal_phone_number_text_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/colby_bold"
+            android:text="@string/contact_support_modal_phone_link" />
+
+        <TextView
+            android:id="@+id/callPeterPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="phone"
+            android:fontFamily="@font/colby_bold"
+            android:paddingStart="@dimen/contact_support_modal_phone_number_padding_start"
+            android:paddingTop="@dimen/contact_support_modal_phone_number_padding_top"
+            android:paddingEnd="@dimen/contact_support_modal_phone_number_padding_end"
+            android:text="@string/contact_support_peter_number"
+            android:textColor="@color/contact_support_modal_phone_number_color"
+            android:textColorHighlight="@color/brand_secondary"
+            android:textColorLink="@color/contact_support_modal_phone_number_color"
+            android:textSize="@dimen/contact_support_modal_phone_number_text_size" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

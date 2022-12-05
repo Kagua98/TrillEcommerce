@@ -9,9 +9,9 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="@dimen/home_card_height"
+        android:layout_marginStart="@dimen/home_card_margin_start"
+        android:layout_marginEnd="@dimen/home_card_margin_end"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">

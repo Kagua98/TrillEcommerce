@@ -2,43 +2,249 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="socials_button_size">40dp</dimen>
-    <dimen name="account_footer_spacer_width">10dp</dimen>
+    <item name="wrap_content" format="integer" type="dimen">-2</item>
 
+    <!-- Util -->
     <dimen name="number_button_corner_radius">10dp</dimen>
     <dimen name="number_button_text_size">28sp</dimen>
-    
-    <dimen name="navbar_title_size">20sp</dimen>
 
+    <!-- Project Wide -->
+    <dimen name="navbar_margin_top_height">10dp</dimen>
+    <dimen name="global_navbar_title_size">20sp</dimen>
+    <dimen name="global_button_corner_radius">5dp</dimen>
+
+
+    <!-- Home page -->
+    <dimen name="home_navbar_margin">16dp</dimen>
+    <dimen name="home_card_margin_start">16dp</dimen>
+    <dimen name="home_card_margin_end">@dimen/home_card_margin_start</dimen>
+    <dimen name="home_card_margin_top">@dimen/home_card_margin_start</dimen>
+    <dimen name="home_categories_title_size">24sp</dimen>
+    <dimen name="home_categories_title_padding">10dp</dimen>
+    <dimen name="home_categories_margin_top">10dp</dimen>
+    <dimen name="home_recycler_margin_bottom">50dp</dimen>
+    <dimen name="home_recycler_margin_top">5dp</dimen>
+    <dimen name="home_card_height">200dp</dimen>
+    <dimen name="home_categories_title_see_all_padding">10dp</dimen>
+    <dimen name="home_categories_see_all_drawable_size">20dp</dimen>
+    <dimen name="home_categories_see_all_chevron_size">10dp</dimen>
+    <dimen name="home_categories_see_all_chevron_margin_end">16dp</dimen>
     <dimen name="home_button_account_size">32dp</dimen>
     <dimen name="home_item_title_size">16sp</dimen>
+    <dimen name="home_navbar_text_greeting_size">30sp</dimen>
+    <dimen name="home_navbar_user_name_text_size">30sp</dimen>
+    <dimen name="home_navbar_profile_icon_margin_top">10dp</dimen>
+    <dimen name="home_ad_elevation">5dp</dimen>
+    <dimen name="home_ad_margin">16dp</dimen>
+    <dimen name="home_ad_stroke_width">1dp</dimen>
+    <dimen name="home_ad_corner_radius">10dp</dimen>
+    <dimen name="home_ad_title_size">20sp</dimen>
+    <dimen name="home_ad_subtitle_size">14sp</dimen>
+    <dimen name="home_ad_title_margin_top">12dp</dimen>
+    <dimen name="home_ad_title_margin_start">12dp</dimen>
+    <dimen name="home_ad_title_margin_end">12dp</dimen>
+    <dimen name="home_ad_subtitle_margin_top">2dp</dimen>
+    <dimen name="home_ad_subtitle_margin_end">12dp</dimen>
+    <dimen name="home_ad_subtitle_margin_start">12dp</dimen>
+    <dimen name="home_ad_button_text_size">14sp</dimen>
+    <dimen name="home_ad_button_corner_radius">@dimen/global_button_corner_radius</dimen>
+    <dimen name="home_ad_button_padding">14dp</dimen>
+    <dimen name="home_ad_button_margin_start">12dp</dimen>
+    <dimen name="home_ad_image_margin_top">10dp</dimen>
 
+
+    <!-- Menu Page -->
+    <dimen name="menu_navbar_margin_top">10dp</dimen>
+    <dimen name="menu_recycler_padding_start">10dp</dimen>
+    <dimen name="menu_recycler_padding_end">@dimen/menu_recycler_padding_start</dimen>
+    <dimen name="menu_recycler_margin_bottom">70dp</dimen>
+    <dimen name="menu_item_card_elevation">5dp</dimen>
+    <dimen name="menu_item_margin_start">5dp</dimen>
+    <dimen name="menu_item_margin_end">5dp</dimen>
+    <dimen name="menu_item_margin_top">5dp</dimen>
+    <dimen name="menu_item_corner_radius">10dp</dimen>
+    <dimen name="menu_item_image_height">150dp</dimen>
+    <dimen name="menu_item_title_size">16sp</dimen>
+    <dimen name="menu_item_image_padding">15dp</dimen>
+
+
+    <!-- Menu List Page -->
     <dimen name="menu_list_item_icon_size">36dp</dimen>
     <dimen name="menu_list_item_elevation">5dp</dimen>
     <dimen name="menu_list_item_corner_radius">10dp</dimen>
     <dimen name="menu_list_item_image_size">150dp</dimen>
+    <dimen name="menu_list_recycler_padding_start">10dp</dimen>
+    <dimen name="menu_list_recycler_padding_end">10dp</dimen>
+    <dimen name="menu_list_recycler_margin_top">16dp</dimen>
+    <dimen name="menu_list_recycler_margin_bottom">70dp</dimen>
+    <dimen name="menu_list_navbar_margin_top">10dp</dimen>
+    <dimen name="menu_list_item_margin_start">5dp</dimen>
+    <dimen name="menu_list_item_margin_end">5dp</dimen>
+    <dimen name="menu_list_item_margin_top">5dp</dimen>
+    <dimen name="menu_list_item_image_padding">10dp</dimen>
+    <dimen name="menu_list_item_title_size">16sp</dimen>
 
+
+    <!-- Item Details Page -->
     <dimen name="item_details_button_close_size">40dp</dimen>
-    <dimen name="item_details_image_height">350dp</dimen>
+    <dimen name="item_details_image_height">@dimen/wrap_content</dimen>
     <dimen name="item_details_product_title_size">20sp</dimen>
-    <dimen name="item_details_product_title_padding">16dp</dimen>
+    <dimen name="item_details_product_title_padding">20dp</dimen>
     <dimen name="item_details_product_title_padding_start">22dp</dimen>
+    <dimen name="item_details_product_title_padding_end">
+        @dimen/item_details_product_title_padding_start
+    </dimen>
     <dimen name="item_details_comments_image_size">50dp</dimen>
     <dimen name="item_details_comments_name_size">18sp</dimen>
+    <dimen name="item_details_rating_bar_margin_start">16dp</dimen>
+    <dimen name="item_details_number_button_width">150dp</dimen>
+    <dimen name="item_details_number_button_height">40dp</dimen>
+    <dimen name="item_details_number_button_margin_start">16dp</dimen>
+    <dimen name="item_details_number_button_margin_top">10dp</dimen>
+    <dimen name="item_details_text_margin_start">16dp</dimen>
+    <dimen name="item_details_text_margin_end">@dimen/item_details_text_margin_start</dimen>
+    <dimen name="item_details_read_reviews_margin_top">10dp</dimen>
+    <dimen name="item_details_button_close_margin_top">5dp</dimen>
+    <dimen name="item_details_button_close_margin_start">10dp</dimen>
 
+
+    <!-- Cart Page -->
+    <dimen name="cart_footer_total_title_size">20sp</dimen>
+    <dimen name="cart_footer_button_checkout_padding">16dp</dimen>
+    <dimen name="cart_footer_button_text_size">18sp</dimen>
+    <dimen name="cart_footer_button_corner_radius">@dimen/global_button_corner_radius</dimen>
+    <dimen name="cart_footer_button_margin_top">10dp</dimen>
+    <dimen name="cart_footer_padding">16dp</dimen>
+    <dimen name="cart_item_padding">5dp</dimen>
+    <dimen name="cart_item_corner_radius">5dp</dimen>
+    <dimen name="cart_item_margin_start">10dp</dimen>
+    <dimen name="cart_item_margin_end">@dimen/cart_item_margin_start</dimen>
+    <dimen name="cart_item_margin_bottom">7dp</dimen>
+    <dimen name="cart_item_margin_top">5dp</dimen>
+    <dimen name="cart_item_image_padding">10dp</dimen>
+    <dimen name="cart_item_image_height">120dp</dimen>
+    <dimen name="cart_item_price_title_size">15sp</dimen>
+    <dimen name="cart_empty_cart_button_corner_radius">5dp</dimen>
+    <dimen name="cart_empty_cart_button_padding">16dp</dimen>
+    <dimen name="cart_empty_cart_title_size">28sp</dimen>
+    <dimen name="cart_recycler_view_margin_top">15dp</dimen>
+    <dimen name="cart_navbar_title_size">@dimen/global_navbar_title_size</dimen>
+    <dimen name="cart_navbar_title_margin">5dp</dimen>
+    <dimen name="cart_navbar_margin_end">16dp</dimen>
+    <dimen name="cart_navbar_clean_cart_image_size">36dp</dimen>
+    <dimen name="cart_dialog_title_size">18sp</dimen>
+    <dimen name="cart_dialog_title_padding">16dp</dimen>
+    <dimen name="cart_dialog_description_padding_start">16dp</dimen>
+    <dimen name="cart_dialog_description_padding_end">@dimen/cart_dialog_description_padding_start</dimen>
+    <dimen name="cart_dialog_text_body_size">16sp</dimen>
+
+
+    <!-- Comments Modal -->
+    <dimen name="comments_dialog_title_size">18sp</dimen>
+    <dimen name="comments_dialog_input_field_height">200dp</dimen>
+
+
+    <!-- Order Success -->
+    <dimen name="order_success_button_corner_radius">5dp</dimen>
+    <dimen name="order_success_button_stroke_width">1dp</dimen>
+    <dimen name="order_success_button_padding">16dp</dimen>
+    <dimen name="order_success_progress_bar_margin_top">10dp</dimen>
+    <dimen name="order_success_progress_bar_thickness">10dp</dimen>
+    <dimen name="order_success_progress_bar_corner_radius">30dp</dimen>
+    <dimen name="order_success_progress_bar_progress">20</dimen>
+    <dimen name="order_success_body_margin_top">10dp</dimen>
+    <dimen name="order_success_time_text_size">45sp</dimen>
+    <dimen name="order_success_card_padding">10dp</dimen>
+    <dimen name="order_success_card_corner_radius">10dp</dimen>
+    <dimen name="order_success_card_margin">16dp</dimen>
+    <dimen name="order_success_card_elevation">5dp</dimen>
+    <dimen name="order_success_time_margin_top">10dp</dimen>
+
+
+    <!-- Account Page -->
+    <dimen name="socials_button_size">40dp</dimen>
+    <dimen name="account_footer_spacer_width">10dp</dimen>
     <dimen name="account_item_chevron_right_size">15dp</dimen>
     <dimen name="account_list_item_margin_top">20dp</dimen>
     <dimen name="account_textview_title_size">18sp</dimen>
     <dimen name="account_button_logout_size">16sp</dimen>
-    <dimen name="account_contact_support_navbar_text_size">20sp</dimen>
-    <dimen name="account_profile_image_size">150dp</dimen>
+    <dimen name="account_contact_support_navbar_text_size">@dimen/global_navbar_title_size</dimen>
+    <dimen name="account_profile_image_size">100dp</dimen>
     <dimen name="account_navbar_title_size">26sp</dimen>
+    <dimen name="account_footer_socials_title_size">18sp</dimen>
+    <dimen name="account_footer_tos_text_size">18sp</dimen>
+    <dimen name="account_navbar_padding">16dp</dimen>
+    <dimen name="account_items_margin_start">16dp</dimen>
 
+
+    <!-- Login Page -->
     <dimen name="login_items_margin_top">10dp</dimen>
     <dimen name="login_form_button_text_size">14sp</dimen>
-    <dimen name="login_text_signup_size">12sp</dimen>
-    <dimen name="login_navbar_title_size">30sp</dimen>
-    <dimen name="login_navbar_subtitle_size">14sp</dimen>
+    <dimen name="login_text_signup_size">16sp</dimen>
+    <dimen name="login_navbar_title_size">32sp</dimen>
+    <dimen name="login_navbar_subtitle_size">16sp</dimen>
+    <dimen name="login_button_padding">16dp</dimen>
+    <dimen name="login_button_corner_radius">@dimen/global_button_corner_radius</dimen>
+    <dimen name="login_form_padding">20dp</dimen>
 
-    <dimen name="navbar_margin_top_height">20dp</dimen>
+
+    <!-- Profile Page -->
+    <dimen name="profile_form_padding">20dp</dimen>
+    <dimen name="profile_image_margin_top">20dp</dimen>
+    <dimen name="profile_button_corner_radius">@dimen/global_button_corner_radius</dimen>
+    <dimen name="profile_button_margin">20dp</dimen>
+    <dimen name="profile_button_padding">16dp</dimen>
+    <dimen name="profile_form_heading_size">16sp</dimen>
+    <dimen name="profile_form_heading_padding_start">3dp</dimen>
+    <dimen name="profile_form_heading_padding_end">@dimen/profile_form_heading_padding_start</dimen>
+    <dimen name="profile_dialog_padding">16dp</dimen>
+    <dimen name="profile_dialog_title_size">18sp</dimen>
+    <dimen name="profile_dialog_title_padding">16dp</dimen>
+    <dimen name="profile_dialog_description_padding_start">16dp</dimen>
+    <dimen name="profile_dialog_description_padding_end">@dimen/profile_dialog_description_padding_start</dimen>
+    <dimen name="profile_dialog_negative_button_stroke_width">1dp</dimen>
+    <dimen name="profile_dialog_negative_button_margin_end">10dp</dimen>
+    <dimen name="profile_dialog_buttons_margin_top">10dp</dimen>
+    <dimen name="profile_dialog_text_body_size">16sp</dimen>
+
+    <!-- Contact Support Page -->
+    <dimen name="contact_support_call_peter_text_size">18sp</dimen>
+    <dimen name="contact_support_button_corner_radius">@dimen/global_button_corner_radius</dimen>
+    <dimen name="contact_support_button_padding">16dp</dimen>
+    <dimen name="contact_support_button_margin">16dp</dimen>
+    <dimen name="contact_support_navbar_phone_image_size">36dp</dimen>
+    <dimen name="contact_support_navbar_margin_end">16dp</dimen>
+    <dimen name="contact_support_navbar_margin_top">10dp</dimen>
+    <dimen name="contact_support_navbar_margin_start">16dp</dimen>
+    <dimen name="contact_support_heading_size">18sp</dimen>
+    <dimen name="contact_support_heading_padding_top">16dp</dimen>
+    <dimen name="contact_support_heading_padding_start">16dp</dimen>
+    <dimen name="contact_support_heading_padding_end">16dp</dimen>
+    <dimen name="contact_support_body_padding_start">16dp</dimen>
+    <dimen name="contact_support_body_padding_end">16dp</dimen>
+    <dimen name="contact_support_body_padding_top">8dp</dimen>
+    <dimen name="contact_support_body_padding_bottom">16dp</dimen>
+
+    <dimen name="contact_support_modal_padding">20dp</dimen>
+    <dimen name="contact_support_modal_title_padding_top">16dp</dimen>
+    <dimen name="contact_support_modal_title_padding_bottom">5dp</dimen>
+    <dimen name="contact_support_modal_title_padding_start">16dp</dimen>
+    <dimen name="contact_support_modal_title_padding_end">16dp</dimen>
+    <dimen name="contact_support_modal_title_size">20sp</dimen>
+    <dimen name="contact_support_modal_subtitle_size">16sp</dimen>
+    <dimen name="contact_support_modal_subtitle_padding_top">0dp</dimen>
+    <dimen name="contact_support_modal_subtitle_padding_bottom">6dp</dimen>
+    <dimen name="contact_support_modal_subtitle_padding_start">16dp</dimen>
+    <dimen name="contact_support_modal_subtitle_padding_end">@dimen/contact_support_modal_subtitle_padding_start</dimen>
+    <dimen name="contact_support_modal_phone_number_text_size">18sp</dimen>
+    <dimen name="contact_support_modal_phone_number_padding_start">12dp</dimen>
+    <dimen name="contact_support_modal_phone_number_padding_end">12dp</dimen>
+    <dimen name="contact_support_modal_phone_number_padding_top">10dp</dimen>
+
+
+    <!-- Register Page -->
+    <dimen name="register_form_padding">20dp</dimen>
+    <dimen name="register_button_padding">16dp</dimen>
+    <dimen name="register_button_corner_radius">@dimen/global_button_corner_radius</dimen>
+    <dimen name="login_navbar_margin_top">0dp</dimen>
 </resources>

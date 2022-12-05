@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- Splashscreen -->
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">

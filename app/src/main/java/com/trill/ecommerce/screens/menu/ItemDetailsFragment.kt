@@ -15,11 +15,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import com.andremion.counterfab.CounterFab
 import com.bumptech.glide.Glide
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
@@ -36,14 +34,14 @@ import com.trill.ecommerce.model.CommentsModel
 import com.trill.ecommerce.model.MenuItemsModel
 import com.trill.ecommerce.screens.menu.comments.CommentsFragment
 import com.trill.ecommerce.util.Common
-import com.trill.ecommerce.util.LoadingFragment
-import com.trill.ecommerce.util.NumberButton
+import com.trill.ecommerce.util.ui.LoadingFragment
+import com.trill.ecommerce.util.ui.NumberButton
 import com.trill.ecommerce.viewmodel.ItemDetailsViewModel
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.SingleObserver
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.schedulers.Schedulers
+import io.reactivex.SingleObserver
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
 
 class ItemDetailsFragment : Fragment() {
@@ -61,6 +59,7 @@ class ItemDetailsFragment : Fragment() {
     private var btnShowComments: TextView? = null
     private var userName: String? = null
     private var userPhone: String? = null
+    private var extendedFAB: ExtendedFloatingActionButton? = null
 
 
     private lateinit var loadingFragmentHelper: LoadingFragment.LoadingFragmentHelper
@@ -69,8 +68,8 @@ class ItemDetailsFragment : Fragment() {
     private lateinit var cartDataSource: CartDataSource
 
     override fun onAttach(context: Context) {
-        super.onAttach(context)
         showFAB()
+        super.onAttach(context)
     }
 
     override fun onCreateView(
@@ -107,9 +106,11 @@ class ItemDetailsFragment : Fragment() {
             commentsFragment.show(requireActivity().supportFragmentManager, "CommentsFragment")
         }
 
-        binding.fabStar.setOnClickListener {
+        binding.ratingBarLayout.setOnClickListener {
             showDialogRating(root)
         }
+
+
 
         binding.counterFab.setOnClickListener {
             addItemsToCart(root)
@@ -132,10 +133,11 @@ class ItemDetailsFragment : Fragment() {
         cartItem.productID = Common.listItemSelected!!.id!!
         cartItem.productName = Common.listItemSelected!!.name!!
         cartItem.productImage = Common.listItemSelected!!.image!!
-        cartItem.productPrice = Common.listItemSelected!!.price!!.toDouble()
+        cartItem.productPrice = Common.listItemSelected!!.price!!.toLong()
         cartItem.productQuantity = numberButton.number.toInt()
 
-        cartDataSource.getItemWithAllOptionsInCart(uid,
+        cartDataSource.getItemWithAllOptionsInCart(
+            uid,
             cartItem.productID
         )
             .subscribeOn(Schedulers.io())
@@ -159,25 +161,41 @@ class ItemDetailsFragment : Fragment() {
                                 }
 
                                 override fun onSuccess(t: Int) {
-                                    Toast.makeText(context, "Cart Updated Successfully", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        context,
+                                        "Cart Updated Successfully",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                     EventBus.getDefault().postSticky(CountCartEvent(true))
                                 }
 
                                 override fun onError(e: Throwable) {
-                                    Toast.makeText(context, "[Update Cart ${e.message}", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        context,
+                                        "[Update Cart ${e.message}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
 
                             })
-                    }else {
+                    } else {
                         //If item is not available in database, just update it
                         compositeDisposable.add(cartDataSource.insertOrReplaceAll(cartItem)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({
-                                Toast.makeText(context, "Item Added to cart", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    context,
+                                    "Item Added to cart",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 EventBus.getDefault().postSticky(CountCartEvent(true))
-                            },{
-                                    t: Throwable? -> Toast.makeText(context, "[INSERT CART]${t!!.message}!", Toast.LENGTH_SHORT).show()
+                            }, { t: Throwable? ->
+                                Toast.makeText(
+                                    context,
+                                    "[INSERT CART]${t!!.message}!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                             )
                         )
@@ -185,19 +203,29 @@ class ItemDetailsFragment : Fragment() {
                 }
 
                 override fun onError(e: Throwable) {
-                    if (e.message!!.contains("empty")){
+                    if (e.message!!.contains("empty")) {
                         compositeDisposable.add(cartDataSource.insertOrReplaceAll(cartItem)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({
-                                Toast.makeText(context, "Item Added to cart", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    context,
+                                    "Item Added to cart",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 EventBus.getDefault().postSticky(CountCartEvent(true))
-                            },{
-                                t: Throwable? -> Toast.makeText(context, "[INSERT CART]${e.message}!", Toast.LENGTH_SHORT).show()
+                            }, { t: Throwable? ->
+                                Toast.makeText(
+                                    context,
+                                    "[INSERT CART]${e.message}!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                             )
-                        )}else {
-                        Toast.makeText(context, "[CART ERROR]${e.message}!", Toast.LENGTH_SHORT).show()
+                        )
+                    } else {
+                        Toast.makeText(context, "[CART ERROR]${e.message}!", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
 
@@ -207,11 +235,13 @@ class ItemDetailsFragment : Fragment() {
     }
 
     private fun initView(root: View) {
-
+        extendedFAB = binding.counterFab
     }
 
+
+
     private fun submitRatingToFirebase(it: CommentsModel?) {
-       // showLoading(true)
+        // showLoading(true)
         FirebaseDatabase.getInstance().getReference(Common.COMMENT_REFERENCE)
             .child(Common.listItemSelected!!.id!!).push().setValue(it)
             .addOnCompleteListener { task ->
@@ -285,12 +315,12 @@ class ItemDetailsFragment : Fragment() {
         builder.setPositiveButton("Save Comment") { dialogInterface, i ->
 
             //Views from the Custom Dialog
-            var editText:TextInputEditText? = itemView.findViewById(R.id.textInputEditText)
-            var ratingBar:RatingBar? = itemView.findViewById(R.id.ratingBar)
+            var editText: TextInputEditText? = itemView.findViewById(R.id.textInputEditText)
+            var ratingBar: RatingBar? = itemView.findViewById(R.id.ratingBar)
             var userComment = editText!!.text.toString()
             var ratingValue = ratingBar!!.rating
 
-            var userName : String? = null
+            var userName: String? = null
 
             //Read data from firebase
             val uid = FirebaseAuth.getInstance().currentUser!!.uid
@@ -314,11 +344,11 @@ class ItemDetailsFragment : Fragment() {
 
     private fun populateFields(it: MenuItemsModel?) {
         Glide.with(requireContext()).load(it!!.image).into(binding.imageView)
-        binding.title.text = it!!.name
-        binding.price.text = "KSh ${it!!.price.toString()}"
-        binding.description.text = it!!.description
+        binding.title.text = it.name
+        binding.price.text =  "Ksh${"%, d".format(it!!.price)}"   //"KSh ${it!!.price.toString()}"
+        binding.description.text = it.description
 
-        binding.ratingBar.rating = it!!.ratingValue!!.toFloat()
+        binding.ratingBar.rating = it.ratingValue!!.toFloat()
     }
 
     private fun navbar(root: View) {
@@ -333,11 +363,11 @@ class ItemDetailsFragment : Fragment() {
         loadingFragmentHelper.showLoading(isLoading)
     }
 
-    private fun getUserName(){
+    private fun getUserName() {
         val itemView =
             LayoutInflater.from(context).inflate(R.layout.item_details_rating_dialog, null)
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        val reference : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
+        val reference: DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
         reference.child(uid).get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -345,8 +375,9 @@ class ItemDetailsFragment : Fragment() {
                         //Everything works to plan
                         val dataSnapshot = task.result
                         val name = dataSnapshot.child("name").value.toString()
-                        var editText:TextInputEditText? = itemView.findViewById(R.id.textInputEditText)
-                        var ratingBar:RatingBar? = itemView.findViewById(R.id.ratingBar)
+                        var editText: TextInputEditText? =
+                            itemView.findViewById(R.id.textInputEditText)
+                        var ratingBar: RatingBar? = itemView.findViewById(R.id.ratingBar)
 
                         userName = name
                         Log.i(TAG, "Logged in name is $name")
@@ -355,13 +386,17 @@ class ItemDetailsFragment : Fragment() {
                         //Set username to customer. Means username is null which shouldn't be the case
                     }
                 } else
-                    Toast.makeText(context, "An error occurred, please try again", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        "An error occurred, please try again",
+                        Toast.LENGTH_SHORT
+                    ).show()
             }
     }
 
-    private fun getUserPhone(){
+    private fun getUserPhone() {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        val reference : DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
+        val reference: DatabaseReference = FirebaseDatabase.getInstance().reference.child("Users")
         reference.child(uid).get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -370,14 +405,23 @@ class ItemDetailsFragment : Fragment() {
                         val dataSnapshot = task.result
                         val phone = dataSnapshot.child("phone").value.toString()
                         userPhone = phone
-                //        Log.i(TAG, "Phone number is $phone")
+                        //        Log.i(TAG, "Phone number is $phone")
 
                     } else {
                         //Set username to customer. Means username is null which shouldn't be the case
                     }
                 } else
-                    Toast.makeText(context, "An error occurred, please try again", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        "An error occurred, please try again",
+                        Toast.LENGTH_SHORT
+                    ).show()
             }
+    }
+
+    override fun onResume() {
+        showFAB()
+        super.onResume()
     }
 
     private fun onBackPressed(view: View) {
@@ -385,13 +429,13 @@ class ItemDetailsFragment : Fragment() {
     }
 
     private fun showFAB() {
-        val fab : CounterFab = requireActivity().findViewById(R.id.counterFab)
-        fab.visibility = View.VISIBLE
+        val fab: View? = requireActivity().findViewById(R.id.counterFab)
+        fab!!.visibility = View.VISIBLE
     }
 
-     override fun onDetach() {
-         if (compositeDisposable != null)
-             compositeDisposable.clear()
-         super.onDetach()
-     }
+    override fun onDetach() {
+        if (compositeDisposable != null)
+            compositeDisposable.clear()
+        super.onDetach()
+    }
 }

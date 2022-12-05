@@ -3,8 +3,6 @@ package com.trill.ecommerce.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.trill.ecommerce.model.CommentsModel
-import com.trill.ecommerce.model.MenuItemsModel
-import com.trill.ecommerce.util.Common
 
 class CommentsViewModel : ViewModel() {
 
@@ -14,10 +12,9 @@ class CommentsViewModel : ViewModel() {
         mutableLiveDataCommentsList = MutableLiveData()
     }
 
-    fun setCommentsList(commentsList: List<CommentsModel>){
+    fun setCommentsList(commentsList: List<CommentsModel>) {
         mutableLiveDataCommentsList!!.value = commentsList
     }
-
 
 
 }

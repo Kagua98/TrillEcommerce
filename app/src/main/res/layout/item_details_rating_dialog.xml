@@ -10,12 +10,12 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rate this product"
+        android:text="@string/comments_dialog_title"
         android:fontFamily="@font/colby_bold"
-        android:textSize="18sp"
+        android:textSize="@dimen/comments_dialog_title_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/heading_medium_brandTertiary"/>
+        android:textColor="@color/text_brand_tertiary"/>
     <TextView
         android:id="@+id/subtitle"
         android:layout_width="wrap_content"
@@ -44,11 +44,11 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="@dimen/comments_dialog_input_field_height"
             android:id="@+id/textInputEditText"
             android:maxLines="100"
             android:gravity="top"
-            android:hint="Let others know what you think"
+            android:hint="@string/comments_dialog_field_hint"
             />
     </com.google.android.material.textfield.TextInputLayout>
 

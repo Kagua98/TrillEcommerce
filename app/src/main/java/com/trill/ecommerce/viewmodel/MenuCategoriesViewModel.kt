@@ -1,18 +1,16 @@
 package com.trill.ecommerce.viewmodel
 
-import android.view.Menu
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.trill.ecommerce.callback.IOMenuCategoriesCallBackListener
+import com.trill.ecommerce.callback.IMenuCategoriesCallBackListener
 import com.trill.ecommerce.model.MenuCategoriesModel
 import com.trill.ecommerce.util.Common
 
-class MenuCategoriesViewModel : ViewModel(), IOMenuCategoriesCallBackListener {
+class MenuCategoriesViewModel : ViewModel(), IMenuCategoriesCallBackListener {
 
     override fun onMenuCategoryLoadSuccess(menuCategoriesList: List<MenuCategoriesModel>) {
         menuCategoriesListMutable?.value = menuCategoriesList
@@ -24,32 +22,33 @@ class MenuCategoriesViewModel : ViewModel(), IOMenuCategoriesCallBackListener {
 
     private var menuCategoriesListMutable: MutableLiveData<List<MenuCategoriesModel>>? = null
     private var messageError: MutableLiveData<String> = MutableLiveData()
-    private val menuCategoriesCallBackListener: IOMenuCategoriesCallBackListener
+    private val menuCategoriesCallBackListener: IMenuCategoriesCallBackListener
 
     init {
         menuCategoriesCallBackListener = this
     }
 
-    fun getMenuCategoriesList():MutableLiveData<List<MenuCategoriesModel>>{
-        if (menuCategoriesListMutable == null){
+    fun getMenuCategoriesList(): MutableLiveData<List<MenuCategoriesModel>> {
+        if (menuCategoriesListMutable == null) {
             menuCategoriesListMutable = MutableLiveData()
             loadMenu()
         }
         return menuCategoriesListMutable!!
     }
 
-    fun getMessageError(): MutableLiveData<String>{
+    fun getMessageError(): MutableLiveData<String> {
         return messageError
     }
 
     private fun loadMenu() {
         val tempList = ArrayList<MenuCategoriesModel>()
         val menuCategoryRef = FirebaseDatabase.getInstance().getReference(Common.MENU_CATEGORY_REF)
-        menuCategoryRef.addListenerForSingleValueEvent(object: ValueEventListener {
+        menuCategoryRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                for (itemSnapshot in snapshot!!.children){
-                    val model = itemSnapshot.getValue<MenuCategoriesModel> (MenuCategoriesModel::class.java)
+                for (itemSnapshot in snapshot!!.children) {
+                    val model =
+                        itemSnapshot.getValue<MenuCategoriesModel>(MenuCategoriesModel::class.java)
                     model!!.menu_id = itemSnapshot.key
                     tempList.add(model!!)
                 }

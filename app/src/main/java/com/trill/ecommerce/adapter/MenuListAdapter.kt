@@ -18,7 +18,7 @@ import com.trill.ecommerce.util.Common
 import com.trill.ecommerce.util.MenuCategoryClick
 import com.trill.ecommerce.util.MenuListItemClick
 import com.trill.ecommerce.util.RecyclerItemClickListener
-import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.disposables.CompositeDisposable
 import org.greenrobot.eventbus.EventBus
 
 class MenuListAdapter(
@@ -79,7 +79,7 @@ class MenuListAdapter(
             .placeholder(R.drawable.art_item_placeholder)
             .into(holder.childImage!!)
         holder.childName!!.text = menuItemsList[position].name
-        holder.childPrice!!.text = "Ksh "+menuItemsList[position].price.toString()
+        holder.childPrice!!.text = "Ksh${"%, d".format(menuItemsList[position].price)}"
 
         holder.setListener(object : RecyclerItemClickListener {
             override fun onItemClick(view: View, pos: Int) {

@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="@dimen/login_form_padding"
     android:theme="@style/Theme.TrillEcommerce">
 
 
@@ -41,8 +41,8 @@
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        app:cornerRadius="5dp"
+        android:padding="@dimen/login_button_padding"
+        app:cornerRadius="@dimen/login_button_corner_radius"
         android:id="@+id/button"
         android:visibility="visible"
         android:backgroundTint="@color/brand_tertiary"

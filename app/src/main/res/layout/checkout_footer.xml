@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    android:theme="@style/Theme.TrillEcommerce">
+
+
+    <TextView
+        android:id="@+id/textTotalTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/colby_bold"
+        android:gravity="center"
+        android:text="Total: "
+        android:textColor="@color/text_default"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textTotalAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/colby_bold"
+        android:gravity="center"
+        android:paddingStart="5dp"
+        android:paddingEnd="0dp"
+        tools:text="Ksh 100000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/textTotalTitle"
+        app:layout_constraintStart_toEndOf="@id/textTotalTitle"
+        app:layout_constraintTop_toBottomOf="@id/textTotalTitle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/checkoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/checkout_button_color"
+        android:fontFamily="@font/colby_bold"
+        android:padding="16dp"
+        android:text="Place Order"
+        android:textColor="@color/white_smoke"
+        android:textSize="16sp"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textTotalTitle" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

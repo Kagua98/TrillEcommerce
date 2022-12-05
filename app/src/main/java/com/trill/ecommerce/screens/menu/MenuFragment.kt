@@ -3,24 +3,23 @@ package com.trill.ecommerce.screens.menu
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LayoutAnimationController
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.andremion.counterfab.CounterFab
 import com.google.android.material.snackbar.Snackbar
-
 import com.trill.ecommerce.R
 import com.trill.ecommerce.adapter.MenuCategoriesAdapter
 import com.trill.ecommerce.databinding.FragmentMenuBinding
-import com.trill.ecommerce.util.LoadingFragment
+import com.trill.ecommerce.util.ui.LoadingFragment
 import com.trill.ecommerce.util.SpaceItemDecoration
 import com.trill.ecommerce.viewmodel.MenuCategoriesViewModel
 
@@ -44,7 +43,8 @@ class MenuFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View {
+        savedInstanceState: Bundle?
+    ): View {
 
         _binding = FragmentMenuBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -63,8 +63,8 @@ class MenuFragment : Fragment() {
         recyclerView = binding.recyclerView
 
         menuGroupViewModel.getMessageError().observe(viewLifecycleOwner, Observer {
-            Snackbar.make(requireView(), ""+it, Snackbar.LENGTH_LONG).show()
-            })
+            Snackbar.make(requireView(), "" + it, Snackbar.LENGTH_LONG).show()
+        })
 
         menuGroupViewModel.getMenuCategoriesList().observe(viewLifecycleOwner, Observer {
             adapter = MenuCategoriesAdapter(requireContext(), it)
@@ -83,17 +83,18 @@ class MenuFragment : Fragment() {
     }
 
     private fun showFAB() {
-        val fab : CounterFab = requireActivity().findViewById(R.id.counterFab)
+        val fab: View = requireActivity().findViewById(R.id.counterFab)
         fab.visibility = View.VISIBLE
     }
+
     private fun hideFAB() {
-        val fab : CounterFab = requireActivity().findViewById(R.id.counterFab)
+        val fab: View = requireActivity().findViewById(R.id.counterFab)
         fab.visibility = View.GONE
     }
 
     private fun initViews() {
         showLoading(true)
-      //  layoutAnimationController = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_item_from_left)
+        //  layoutAnimationController = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_item_from_left)
 
         recyclerView = binding.recyclerView
 
@@ -106,6 +107,19 @@ class MenuFragment : Fragment() {
         recyclerView!!.addItemDecoration(SpaceItemDecoration(8))
         recyclerView!!.layoutManager = layoutManager
 
+        val fab = requireActivity().findViewById<CounterFab>(R.id.counterFab)
+        fab.setOnClickListener {
+            val navController =
+                requireActivity().findNavController(R.id.nav_host_fragment_activity_home)
+            // navController.navigateUp() //to clear previous navigation history
+            navController.navigate(R.id.navigation_cart)
+        }
+
+    }
+
+    override fun onResume() {
+        showFAB()
+        super.onResume()
     }
 
     private fun showLoading(isLoading: Boolean) {

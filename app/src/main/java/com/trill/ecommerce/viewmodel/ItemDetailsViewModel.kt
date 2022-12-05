@@ -15,15 +15,15 @@ class ItemDetailsViewModel : ViewModel() {
         mutableLiveDataComments = MutableLiveData()
     }
 
-    fun getMutableLiveDataMenuItem() : MutableLiveData<MenuItemsModel>{
-         if (mutableLiveDataMenuItem == null)
-             mutableLiveDataMenuItem = MutableLiveData()
+    fun getMutableLiveDataMenuItem(): MutableLiveData<MenuItemsModel> {
+        if (mutableLiveDataMenuItem == null)
+            mutableLiveDataMenuItem = MutableLiveData()
         mutableLiveDataMenuItem!!.value = Common.listItemSelected
 
         return mutableLiveDataMenuItem!!
     }
 
-    fun getMutableLiveDataComments() : MutableLiveData<CommentsModel>{
+    fun getMutableLiveDataComments(): MutableLiveData<CommentsModel> {
         if (mutableLiveDataMenuItem == null)
             mutableLiveDataMenuItem = MutableLiveData()
 
@@ -31,7 +31,7 @@ class ItemDetailsViewModel : ViewModel() {
     }
 
     fun setCommentsModel(commentsModel: CommentsModel) {
-        if (mutableLiveDataComments != null){
+        if (mutableLiveDataComments != null) {
             mutableLiveDataComments!!.value = commentsModel
         }
     }

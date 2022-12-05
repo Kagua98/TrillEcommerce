@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimaryOnVariant">#021332</color>
 
     <!-- Project Level -->
     <color name="brand_primary">#E1251B</color>
@@ -14,19 +15,93 @@
     <color name="brand_tertiary">#00205C</color>
     <color name="overlay_gray">#55333639</color>
     <color name="border_color">#AA333639</color>
-    <color name="text_default">#212121</color>
     <color name="white_smoke">#F5F5F5</color>
     <color name="number_button_text_color">#F5F5F5</color>
     <color name="colorWindowSplashScreenBackground">@color/brand_secondary</color>
     <color name="color_social_button">#212121</color>
+    <color name="border_subdued">#88919A</color>
+    <color name="greyStatusBar">#80222222</color>
+    <color name="status_bar_color">@color/brand_tertiary</color>
+    <color name="bottom_nav_selected_color">@color/status_bar_color</color>
+
+    <!-- Global -->
+    <color name="global_button_color">@color/brand_tertiary</color>
+    <color name="notifications_color">@color/brand_secondary</color>
+    <color name="global_navbar_title_color">@color/global_button_color</color>
+    <color name="navbar_back_button_color">@color/global_navbar_title_color</color>
+    <color name="progress_bar_color">@color/brand_tertiary</color>
+
 
     <!-- Home -->
     <color name="cardHomeColor">#ffa000</color>
+    <color name="home_navbar_greeting_color">@color/status_bar_color</color>
+    <color name="home_navbar_user_name_color">@color/brand_primary</color>
+    <color name="home_navbar_button_account_color">@color/home_navbar_greeting_color</color>
+    <color name="home_title_categories_color">@color/global_navbar_title_color</color>
+    <color name="home_fab_badge_count_color">#ffa000</color>
+    <color name="home_title_categories_see_all_color">@color/global_button_color</color>
+    <color name="home_fab_color">@color/global_button_color</color>
+
+    <!-- Menu Categories -->
+    <color name="menu_navbar_title_color">@color/global_navbar_title_color</color>
+
+    <!-- Menu List -->
+    <color name="menu_list_navbar_title_color">@color/global_navbar_title_color</color>
 
 
-    <color name="backButton_color">@color/brand_tertiary</color>
-    <color name="heading_medium_textDefault">#212121</color>
-    <color name="heading_medium_brandTertiary">@color/brand_tertiary</color>
+    <!-- Item Details -->
+    <color name="item_details_extended_fab_color">@color/global_button_color</color>
+    <color name="item_details_extended_fab_text_color">@color/white_smoke</color>
+    <color name="item_details_product_title_color">@color/global_navbar_title_color</color>
+    <color name="item_details_number_button_color">@color/brand_primary</color>
+    <color name="item_details_number_button_read_reviews">@color/brand_primary</color>
+
+
+    <!-- Cart -->
+    <color name="cart_footer_button_color">@color/global_button_color</color>
+    <color name="cart_header_title_color">@color/global_navbar_title_color</color>
+    <color name="cart_empty_title">@color/global_button_color</color>
+    <color name="cart_empty_button_color">@color/global_button_color</color>
+
+
+    <!-- Checkout -->
+    <color name="checkout_dialog_positive_button_color">@color/global_button_color</color>
+    <color name="checkout_dialog_negative_button_color">@color/global_button_color</color>
+    <color name="checkout_button_color">@color/global_button_color</color>
+    <color name="checkout_navbar_title_color">@color/global_navbar_title_color</color>
+    <color name="checkout_location_icon_color">@color/global_button_color</color>
+
+    <!-- Order Success -->
+    <color name="order_success_button_color">@color/global_button_color</color>
+    <color name="order_success_button_stroke_color">@color/global_button_color</color>
+    <color name="order_success_progress_bar_color">@color/purple_500</color>
+    <color name="order_success_progress_bar_undercoat_color">@color/purple_200</color>
+    <color name="order_success_navbar_title_color">@color/global_navbar_title_color</color>
+    <color name="order_success_secondary_button">@color/order_success_button_stroke_color</color>
+
+
+    <!-- TextView -->
+    <color name="text_brand_primary">@color/brand_primary</color>
+    <color name="text_brand_secondary">@color/brand_secondary</color>
+    <color name="text_brand_tertiary">@color/brand_tertiary</color>
+    <color name="text_default">#212121</color>
     <color name="text_link">#2274AF</color>
+
+
+    <color name="profile_navbar_title_color">@color/global_navbar_title_color</color>
+    <color name="profile_button_color">@color/global_button_color</color>
+    <color name="profile_dialog_title_color">@color/text_default</color>
+    <color name="profile_dialog_negative_button_stroke_color">@color/border_subdued</color>
+    <color name="profile_dialog_negative_button_text_color">@color/global_button_color</color>
+
+    <color name="contact_support_button_color">@color/global_button_color</color>
+    <color name="contact_support_heading_text_color">@color/global_navbar_title_color</color>
+    <color name="contact_support_navbar_title_color">@color/global_navbar_title_color</color>
+    <color name="contact_support_navbar_phone_button_color">@color/global_navbar_title_color</color>
+    <color name="contact_support_modal_title_color">@color/global_navbar_title_color</color>
+    <color name="contact_support_modal_phone_number_color">@color/global_navbar_title_color</color>
+
+    <color name="account_page_title_color">@color/global_navbar_title_color</color>
+    <color name="account_button_logout_color">@color/global_button_color</color>
 
 </resources>

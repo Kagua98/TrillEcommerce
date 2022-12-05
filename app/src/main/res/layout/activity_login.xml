@@ -13,14 +13,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:theme="@style/Theme.TrillEcommerce">
 
         <include
             android:id="@+id/navbar"
             layout="@layout/navbar_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/login_navbar_margin_top"
             app:layout_constraintBottom_toTopOf="@id/loginForm"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginEnd="5dp"
-                android:fontFamily="@font/colby_bold"
+                android:fontFamily="@font/opensans_regular"
                 android:text="@string/login_signup_description"
                 android:textSize="@dimen/login_text_signup_size" />
 
@@ -61,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/colby_bold"
+                android:fontFamily="@font/opensans_regular"
                 android:text="@string/login_text_signup"
                 android:textColor="@color/brand_primary"
                 android:textSize="@dimen/login_text_signup_size" />

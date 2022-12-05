@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <TextView
+        android:id="@+id/contactSupportTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/contactSupportTitle"
-        android:text="@string/account_contact_support_title"
-        android:textSize="@dimen/account_textview_title_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:fontFamily="@font/colby_bold"
-        android:textColor="@color/heading_medium_textDefault"/>
+        android:text="@string/account_contact_support_title"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/account_textview_title_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:layout_width="@dimen/account_item_chevron_right_size"
         android:layout_height="@dimen/account_item_chevron_right_size"
+        android:contentDescription="@string/navbar_chevron_right_content_description"
         android:src="@drawable/arrow_right"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

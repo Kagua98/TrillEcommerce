@@ -1,89 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:cardElevation="5dp"
-    app:cardCornerRadius="5dp"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
-    android:layout_marginBottom="7dp"
-    android:layout_marginTop="5dp"
-    android:theme="@style/Theme.TrillEcommerce">
+    android:layout_margin="@dimen/home_ad_margin"
+    android:theme="@style/Theme.TrillEcommerce"
+    app:cardCornerRadius="@dimen/home_ad_corner_radius"
+    app:cardElevation="@dimen/home_ad_elevation"
+    app:strokeColor="@color/border_subdued"
+    app:strokeWidth="@dimen/home_ad_stroke_width">
 
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/home_ad_title_margin_start"
+            android:layout_marginTop="@dimen/home_ad_title_margin_top"
+            android:layout_marginEnd="@dimen/home_ad_title_margin_end"
+            android:fontFamily="@font/colby_bold"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/home_ad_title_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Winter Sale!!" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/home_ad_subtitle_margin_start"
+            android:layout_marginTop="@dimen/home_ad_subtitle_margin_top"
+            android:layout_marginEnd="@dimen/home_ad_subtitle_margin_end"
+            android:fontFamily="@font/opensans_regular"
+            android:textSize="@dimen/home_ad_subtitle_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:text="Find new prices for this winter's sale" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/home_ad_button_margin_start"
+            android:backgroundTint="@color/brand_primary"
+            android:fontFamily="@font/colby_bold"
+            android:padding="@dimen/home_ad_button_padding"
+            android:textColor="@color/white_smoke"
+            android:textSize="@dimen/home_ad_button_text_size"
+            android:visibility="gone"
+            app:cornerRadius="@dimen/home_ad_button_corner_radius"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subtitle"
+            tools:text="Read More" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:src="@drawable/etr"
-            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/home_ad_image_margin_top"
+            android:contentDescription="@string/trill"
             android:scaleType="fitCenter"
-            android:padding="10dp"
-            android:layout_gravity="center"/>
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintTop_toBottomOf="@id/button"
+            tools:src="@drawable/art_item_placeholder" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginStart="10dp"
-            android:layout_gravity="center"
-            android:weightSum="1">
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_height="match_parent">
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/home_item_title_size"
-                    android:textStyle="bold"
-                    android:maxLines="1"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/colby_bold"
-                    android:text="Title of Product Category"/>
-                <TextView
-                    android:id="@+id/description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:maxLines="3"
-                    android:visibility="gone"
-                    android:text="Description of Product Category\nDescription of Product Category"/>
-            </LinearLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/brand_primary"
-                android:fontFamily="@font/colby_bold"
-                android:gravity="center"
-                android:text="See more"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:cornerRadius="30dp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </LinearLayout>
-
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </com.google.android.material.card.MaterialCardView>

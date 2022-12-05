@@ -16,9 +16,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.trill.ecommerce.R
-import com.trill.ecommerce.data.AuthViewModel
 import com.trill.ecommerce.databinding.FragmentAccountBinding
 import com.trill.ecommerce.screens.authentication.LoginActivity
+import com.trill.ecommerce.screens.tos.TOSFragment
 import java.io.File
 
 class AccountFragment : Fragment() {
@@ -26,7 +26,6 @@ class AccountFragment : Fragment() {
     private var _binding: FragmentAccountBinding? = null
     private val binding get() = _binding!!
 
-    private var authViewModel: AuthViewModel? = null
     private lateinit var auth: FirebaseAuth
 
     override fun onAttach(context: Context) {
@@ -34,8 +33,10 @@ class AccountFragment : Fragment() {
         hideFAB()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -51,7 +52,6 @@ class AccountFragment : Fragment() {
         initView(root)
 
 
-
         val buttonLogout = binding.buttonLogout
         buttonLogout.setOnClickListener {
             logout()
@@ -61,28 +61,112 @@ class AccountFragment : Fragment() {
     }
 
     private fun initView(root: View) {
-        val buttonInstagram : View? = root.findViewById(R.id.buttonInstagram)
+        val buttonInstagram: View? = root.findViewById(R.id.buttonInstagram)
         buttonInstagram!!.setOnClickListener {
             instagramButtonClick()
+        }
+
+        val buttonFacebook: View? = root.findViewById(R.id.buttonFacebook)
+        buttonFacebook!!.setOnClickListener {
+            facebookButtonClick()
+        }
+
+        val buttonTwitter: View? = root.findViewById(R.id.twitterButton)
+        buttonTwitter!!.setOnClickListener {
+            twitterButtonClick()
+        }
+
+        val buttonTiktok: View? = root.findViewById(R.id.tiktokButton)
+        buttonTiktok!!.setOnClickListener {
+            tiktokButtonClick()
+        }
+
+        val viewHistory: View? = root.findViewById(R.id.account_history_view)
+        viewHistory!!.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.route_to_history)
+        }
+
+
+        val tosButton: View? = root.findViewById(R.id.textReadTerms)
+        tosButton!!.setOnClickListener {
+            val tosDialog = TOSFragment.getInstance()
+            tosDialog.show(requireActivity().supportFragmentManager, "TOSFragment")
+        }
+    }
+
+    private fun tiktokButtonClick() {
+        val uri: Uri = Uri.parse(getString(R.string.tiktok_account_link))
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        intent.setPackage("com.tiktok.android")
+
+        if (isIntentAvailable(requireContext(), intent)) {
+            startActivity(intent)
+        } else {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(getString(R.string.tiktok_account_link))
+                )
+            )
+        }
+    }
+
+    private fun twitterButtonClick() {
+        val uri: Uri = Uri.parse(getString(R.string.twitter_account_link))
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        intent.setPackage("com.twitter.android")
+
+        if (isIntentAvailable(requireContext(), intent)) {
+            startActivity(intent)
+        } else {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(getString(R.string.twitter_account_link))
+                )
+            )
+        }
+    }
+
+    private fun facebookButtonClick() {
+        val uri: Uri = Uri.parse(getString(R.string.facebook_account_link))
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        intent.setPackage("com.facebook.android")
+
+        if (isIntentAvailable(requireContext(), intent)) {
+            startActivity(intent)
+        } else {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(getString(R.string.facebook_account_link))
+                )
+            )
         }
     }
 
     private fun instagramButtonClick() {
-        val uri : Uri = Uri.parse(getString(R.string.instagram_account_link))
+        val uri: Uri = Uri.parse(getString(R.string.instagram_account_link))
         val intent = Intent(Intent.ACTION_VIEW, uri)
         intent.setPackage("com.instagram.android")
 
-        if (isIntentAvailable(requireContext(), intent)){
+        if (isIntentAvailable(requireContext(), intent)) {
             startActivity(intent)
-        }else{
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.instagram_account_link))))
+        } else {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(getString(R.string.instagram_account_link))
+                )
+            )
         }
 
     }
 
     private fun isIntentAvailable(context: Context, intent: Intent): Boolean {
         val packageManager: PackageManager = context.packageManager
-        val list : List<ResolveInfo> = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
+        val list: List<ResolveInfo> =
+            packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
         return list.isNotEmpty()
     }
 
@@ -111,7 +195,7 @@ class AccountFragment : Fragment() {
     }
 
     private fun hideFAB() {
-        val fab : CounterFab = requireActivity().findViewById(R.id.counterFab)
+        val fab: CounterFab = requireActivity().findViewById(R.id.counterFab)
         fab.visibility = View.GONE
     }
 

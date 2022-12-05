@@ -19,7 +19,7 @@ class CartItem {
     var productImage: String? = null
 
     @ColumnInfo(name = "productPrice")
-    var productPrice: Double? = 0.0
+    var productPrice: Long? = 0
 
     @ColumnInfo(name = "productQuantity")
     var productQuantity: Int? = 0

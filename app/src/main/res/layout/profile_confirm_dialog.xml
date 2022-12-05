@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/profile_dialog_padding"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/Theme.TrillEcommerce">
+
+
+    <TextView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_dialog_title"
+        android:id="@+id/title"
+        android:textColor="@color/profile_dialog_title_color"
+        android:textSize="@dimen/profile_dialog_title_size"
+        android:padding="@dimen/profile_dialog_title_padding"
+        android:fontFamily="@font/colby_bold"/>
+
+    <TextView
+        android:id="@+id/body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/profile_dialog_description_padding_start"
+        android:paddingEnd="@dimen/profile_dialog_description_padding_end"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/profile_dialog_description"
+        android:textSize="@dimen/profile_dialog_text_body_size"
+        app:layout_constraintTop_toBottomOf="@id/title"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancelButton"
+        app:layout_constraintTop_toTopOf="@id/okButton"
+        app:layout_constraintBottom_toBottomOf="@id/okButton"
+        app:layout_constraintEnd_toStartOf="@id/okButton"
+        android:layout_marginEnd="@dimen/profile_dialog_negative_button_margin_end"
+        app:strokeColor="@color/profile_dialog_negative_button_stroke_color"
+        app:strokeWidth="@dimen/profile_dialog_negative_button_stroke_width"
+        android:text="@string/profile_dialog_negative_button_text"
+        android:fontFamily="@font/colby_bold"
+        android:textColor="@color/profile_dialog_negative_button_text_color"
+        app:backgroundTint="?android:attr/windowBackground"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/okButton"
+        android:layout_marginTop="@dimen/profile_dialog_buttons_margin_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/body"
+        android:text="@string/profile_dialog_positive_button_text"
+        android:textColor="@color/white_smoke"
+        android:fontFamily="@font/colby_bold"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,7 +20,7 @@
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/collapsingToolbar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/item_details_image_height"
+                android:layout_height="wrap_content"
                 android:fitsSystemWindows="true"
                 app:contentScrim="#0e0d0e"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -28,10 +28,11 @@
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="center"
-                    android:src="@drawable/art_item_placeholder"
+                    android:layout_height="wrap_content"
                     android:background="@color/white"
+                    android:scaleType="center"
+                    android:minHeight="350dp"
+                    android:src="@drawable/art_item_placeholder"
                     app:layout_collapseMode="parallax" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -46,27 +47,34 @@
             android:backgroundTint="@color/brand_secondary"
             android:src="@drawable/ic_star"
             app:elevation="6dp"
+            android:visibility="gone"
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|right|start"
             app:pressedTranslationZ="12dp"
             app:tint="@color/white_smoke"
             app:useCompatPadding="true" />
 
-        <com.andremion.counterfab.CounterFab
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/counterFab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/brand_primary"
+            android:backgroundTint="@color/item_details_extended_fab_color"
             android:clickable="true"
             android:focusable="true"
             android:longClickable="false"
-            android:src="@drawable/ic_cart"
-            android:tint="@color/white"
-            app:elevation="6dp"
             android:visibility="visible"
+            app:elevation="6dp"
+            android:includeFontPadding="true"
+            android:padding="10dp"
+            android:text="@string/item_details_extended_fab_text"
+            android:textColor="@color/item_details_extended_fab_text_color"
+            android:drawableEnd="@drawable/ic_cart"
+            android:drawableTint="@color/item_details_extended_fab_text_color"
+            android:layout_margin="16dp"
             app:layout_anchor="@id/appbar"
-            app:layout_anchorGravity="end|bottom"
-            app:pressedTranslationZ="12dp" />
+            app:layout_anchorGravity="end|bottom|right"
+            app:pressedTranslationZ="12dp"
+            app:behavior_autoHide="true" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scrollView"
@@ -89,8 +97,9 @@
                     android:fontFamily="@font/colby_bold"
                     android:paddingStart="@dimen/item_details_product_title_padding"
                     android:paddingTop="@dimen/item_details_product_title_padding"
+                    android:paddingEnd="@dimen/item_details_product_title_padding_end"
                     android:text="Product Title"
-                    android:textColor="@color/heading_medium_brandTertiary"
+                    android:textColor="@color/item_details_product_title_color"
                     android:textSize="@dimen/item_details_product_title_size"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -107,33 +116,41 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/title" />
 
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    style="?android:attr/ratingBarStyleIndicator"
+                <LinearLayout
+                    android:id="@+id/ratingBarLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:isIndicator="true"
-                    android:numStars="5"
-                    android:stepSize="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/price" />
+                    app:layout_constraintTop_toBottomOf="@id/price">
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        style="?android:attr/ratingBarStyleIndicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/item_details_rating_bar_margin_start"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:stepSize="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        />
+                </LinearLayout>
 
-                <com.trill.ecommerce.util.NumberButton
+
+                <com.trill.ecommerce.util.ui.NumberButton
                     android:id="@+id/numberButton"
-                    android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_width="@dimen/item_details_number_button_width"
+                    android:layout_height="@dimen/item_details_number_button_height"
+                    android:layout_marginStart="@dimen/item_details_number_button_margin_start"
+                    android:layout_marginTop="@dimen/item_details_number_button_margin_top"
                     android:clickable="true"
                     android:focusable="true"
-                    app:backGroundColor="@color/brand_primary"
+                    app:backGroundColor="@color/item_details_number_button_color"
                     app:elevation="5dp"
                     app:initialNumber="1"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@id/ratingBar"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:textColor="@color/white_smoke"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/ratingBarLayout"
+                    app:textColor="@color/white_smoke" />
 
                 <TextView
                     android:id="@+id/descriptionTitle"
@@ -144,6 +161,7 @@
                     android:fontFamily="@font/colby_bold"
                     android:text="@string/item_details_description_title"
                     android:textSize="18sp"
+                    android:textColor="@color/text_default"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/numberButton" />
 
@@ -151,8 +169,8 @@
                     android:id="@+id/description"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/item_details_text_margin_start"
+                    android:layout_marginEnd="@dimen/item_details_text_margin_end"
                     android:fontFamily="@font/opensans_regular"
                     android:text="@string/item_details_description_text_placeholder"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -163,11 +181,12 @@
                     android:id="@+id/buttonReviews"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="@dimen/item_details_text_margin_start"
+                    android:layout_marginTop="@dimen/item_details_read_reviews_margin_top"
                     android:fontFamily="@font/colby_bold"
                     android:text="Read Reviews"
-                    android:textColor="@color/brand_primary"
+                    android:visibility="gone"
+                    android:textColor="@color/item_details_number_button_read_reviews"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/description" />
 
@@ -181,29 +200,13 @@
             android:id="@+id/backPressed"
             android:layout_width="@dimen/item_details_button_close_size"
             android:layout_height="@dimen/item_details_button_close_size"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/item_details_button_close_margin_start"
+            android:layout_marginTop="@dimen/item_details_button_close_margin_top"
             android:src="@drawable/button_close_item_details"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageView">
 
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:layout_anchorGravity="bottom">
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

@@ -1,25 +1,59 @@
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".screens.cart.CartFragment">
+    tools:context=".screens.cart.CartFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/constraintLayout"
+    android:theme="@style/Theme.TrillEcommerce">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <include
+        android:id="@+id/navbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/constraintLayout">
+        android:layout_height="wrap_content"
+        layout="@layout/navbar_cart"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/navbar_margin_top_height"/>
 
-        <include
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            layout="@layout/navbar_cart"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="@dimen/navbar_margin_top_height"/>
+    <include
+        layout="@layout/empty_cart_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/emptyCartLayout"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/recyclerView"
+        android:layout_marginTop="@dimen/cart_recycler_view_margin_top"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/navbar"
+        app:layout_constraintBottom_toTopOf="@id/cartFooter"
+        tools:listitem="@layout/cart_item" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/overlay_gray"
+        app:layout_constraintTop_toTopOf="@id/cartFooter"/>
+
+    <include
+        android:visibility="gone"
+        android:id="@+id/cartFooter"
+        layout="@layout/cart_footer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>

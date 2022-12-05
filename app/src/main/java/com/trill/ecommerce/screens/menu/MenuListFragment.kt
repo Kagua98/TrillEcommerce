@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.andremion.counterfab.CounterFab
@@ -19,7 +18,7 @@ import com.trill.ecommerce.R
 import com.trill.ecommerce.adapter.MenuListAdapter
 import com.trill.ecommerce.databinding.FragmentMenuListBinding
 import com.trill.ecommerce.util.Common
-import com.trill.ecommerce.util.LoadingFragment
+import com.trill.ecommerce.util.ui.LoadingFragment
 import com.trill.ecommerce.util.SpaceItemDecoration
 import com.trill.ecommerce.viewmodel.MenuListViewModel
 
@@ -81,7 +80,7 @@ class MenuListFragment : Fragment() {
     }
 
     private fun showFAB() {
-        val fab : CounterFab = requireActivity().findViewById(R.id.counterFab)
+        val fab: CounterFab = requireActivity().findViewById(R.id.counterFab)
         fab.visibility = View.VISIBLE
     }
 
@@ -94,6 +93,11 @@ class MenuListFragment : Fragment() {
 
         recyclerView!!.addItemDecoration(SpaceItemDecoration(8))
         recyclerView!!.layoutManager = layoutManager
+    }
+
+    override fun onResume() {
+        showFAB()
+        super.onResume()
     }
 
     private fun showLoading(isLoading: Boolean) {

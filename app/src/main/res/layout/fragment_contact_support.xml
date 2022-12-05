@@ -1,75 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/Theme.TrillEcommerce"
     tools:context=".screens.account.contactsupport.ContactSupportFragment">
 
     <include
+        android:id="@+id/navbar"
+        layout="@layout/navbar_contact_support"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/navbar"
         android:layout_marginTop="@dimen/account_list_item_margin_top"
-        layout="@layout/navbar_contact_support" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-    <include
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/contact_support_phone_numbers"
-        android:id="@+id/phone_number_section"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16sp"
-        app:layout_constraintTop_toBottomOf="@id/navbar"/>
-
-
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="16dp"
-        android:padding="16dp"
-        app:cardElevation="5dp"
-        app:cardCornerRadius="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/phone_number_section">
-        <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/navbar">
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/colby_bold"
+            android:paddingStart="@dimen/contact_support_heading_padding_start"
+            android:paddingTop="@dimen/contact_support_heading_padding_top"
+            android:paddingEnd="@dimen/contact_support_heading_padding_end"
+            android:text="@string/contact_support_heading"
+            android:textColor="@color/contact_support_heading_text_color"
+            android:textSize="@dimen/contact_support_heading_size"
+            app:layout_constraintBottom_toTopOf="@id/editText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/title"
+            app:layout_constraintBottom_toBottomOf="@id/title"
+            android:layout_marginEnd="10dp"
+            android:visibility="gone"
+            android:indeterminate="true"
+            style="@style/Widget.App.CircularProgressIndicator"
+            android:id="@+id/progressBar"/>
+
+
+        <EditText
+            android:id="@+id/editText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <EditText
-                android:hint="@string/account_contact_support_hint"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:id="@+id/editText"
-                android:gravity="top"
-                android:padding="16dp"
-                android:fontFamily="@font/opensans_regular"
-                app:layout_constraintTop_toTopof="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/button"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@android:color/transparent"
-                android:inputType="textMultiLine" />
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/opensans_regular"
+            android:gravity="top"
+            android:hint="@string/contact_support_hint"
+            android:inputType="textMultiLine"
+            android:paddingStart="@dimen/contact_support_body_padding_start"
+            android:paddingTop="@dimen/contact_support_body_padding_top"
+            android:paddingEnd="@dimen/contact_support_body_padding_end"
+            android:paddingBottom="@dimen/contact_support_body_padding_bottom"
+            android:textColorHighlight="@color/brand_secondary"
+            android:textCursorDrawable="@drawable/cursor"
+            app:layout_constraintBottom_toTopOf="@id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/account_contact_support_button_text"
-                android:id="@+id/button"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:padding="16dp"
-                android:fontFamily="@font/colby_bold"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/brand_primary"
-                android:layout_margin="16dp"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/contact_support_button_margin"
+            android:backgroundTint="@color/contact_support_button_color"
+            android:fontFamily="@font/colby_bold"
+            android:padding="@dimen/contact_support_button_padding"
+            android:text="@string/contact_support_button_text"
+            android:textColor="@color/white"
+            app:cornerRadius="@dimen/contact_support_button_corner_radius"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

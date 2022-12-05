@@ -1,33 +1,20 @@
 package com.trill.ecommerce.screens.authentication
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.button.MaterialButton
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.trill.ecommerce.R
-import com.trill.ecommerce.data.AuthViewModel
-import com.trill.ecommerce.databinding.ActivityHomeBinding
 import com.trill.ecommerce.databinding.ActivityLoginBinding
-import com.trill.ecommerce.screens.home.HomeActivity
-import com.trill.ecommerce.util.LoadingFragment
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import kotlin.math.log
+import com.trill.ecommerce.screens.HomeActivity
+import com.trill.ecommerce.util.ui.LoadingFragment
 
 class LoginActivity : AppCompatActivity() {
 
@@ -36,20 +23,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loadingFragmentHelper: LoadingFragment.LoadingFragmentHelper
     private lateinit var auth: FirebaseAuth
 
-    public override fun onStart() {
-        super.onStart()
-        installSplashScreen()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-        if(currentUser != null){
-            navigateToHomeActivity()
-        }
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Handle the splash screen transition.
-        installSplashScreen()
         super.onCreate(savedInstanceState)
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -71,14 +46,15 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun initViews(){
-        val buttonLogin : View? = findViewById(R.id.button)
+    private fun initViews() {
+        val buttonLogin: View? = findViewById(R.id.button)
         buttonLogin!!.setOnClickListener {
             login()
         }
+
     }
 
-    private fun navigateToHomeActivity(){
+    private fun navigateToHomeActivity() {
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
@@ -86,8 +62,8 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun login() {
-      //  showLoading(true)
-        val textInputLayoutEmail : TextInputLayout = findViewById(R.id.textInputLayoutEmail)
+
+        val textInputLayoutEmail: TextInputLayout = findViewById(R.id.textInputLayoutEmail)
         val textInputLayoutPassword: TextInputLayout = findViewById(R.id.textInputLayoutPassword)
 
         var textEmail: TextInputEditText = findViewById(R.id.textEmail)
@@ -97,15 +73,15 @@ class LoginActivity : AppCompatActivity() {
         var password = textPassword.text.toString()
 
 
-        if (email.isEmpty() && password.isEmpty()){
+        if (email.isEmpty() && password.isEmpty()) {
             textInputLayoutEmail.error = getString(R.string.login_empty_email_field_error)
             textInputLayoutPassword.error = getString(R.string.login_empty_password_field_error)
-        }else if (email.isEmpty()){
+        } else if (email.isEmpty()) {
             textInputLayoutEmail.error = getString(R.string.login_empty_email_field_error)
-        }else if (password.isEmpty()){
+        } else if (password.isEmpty()) {
             textInputLayoutPassword.error = getString(R.string.login_empty_password_field_error)
-        }else if (email.isNotEmpty() && password.isNotEmpty()){
-
+        } else if (email.isNotEmpty() && password.isNotEmpty()) {
+            showLoading(true)
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     showLoading(true)
@@ -115,13 +91,14 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "signInWithEmail:success", Toast.LENGTH_SHORT).show()
                         val user = auth.currentUser!!.uid
                         Log.i("Uid", user)
-                     //   updateUI(user)
+                        //   updateUI(user)
                         navigateToHomeActivity()
                     } else {
-                        showLoading(false)
                         // If sign in fails, display a message to the user.
-                        Toast.makeText(baseContext, "Authentication failed. User does not exist",
-                            Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            baseContext, "Authentication failed. User does not exist",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
@@ -133,10 +110,11 @@ class LoginActivity : AppCompatActivity() {
         loadingFragmentHelper.showLoading(isLoading)
     }
 
+
     override fun onStop() {
-     //   if (listener != null)
-     //       firebaseAuth.removeAuthStateListener(listener)
-     //   compositeDisposable.clear()
+        //   if (listener != null)
+        //       firebaseAuth.removeAuthStateListener(listener)
+        //   compositeDisposable.clear()
 
         super.onStop()
     }

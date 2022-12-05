@@ -1,7 +1,6 @@
 package com.trill.ecommerce.screens.menu.comments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,11 +15,9 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.trill.ecommerce.R
 import com.trill.ecommerce.adapter.CommentsAdapter
 import com.trill.ecommerce.callback.ICommentCallBackListener
 import com.trill.ecommerce.databinding.FragmentCommentsBinding
-import com.trill.ecommerce.databinding.FragmentMenuBinding
 import com.trill.ecommerce.model.CommentsModel
 import com.trill.ecommerce.util.Common
 import com.trill.ecommerce.viewmodel.CommentsViewModel
@@ -34,8 +31,10 @@ class CommentsFragment : BottomSheetDialogFragment(), ICommentCallBackListener {
     private var listener: ICommentCallBackListener = this
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = FragmentCommentsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -66,10 +65,11 @@ class CommentsFragment : BottomSheetDialogFragment(), ICommentCallBackListener {
             .child(Common.listItemSelected!!.id!!)
             .orderByChild("commentTimeStamp")
             .limitToLast(100)
-            .addListenerForSingleValueEvent(object : ValueEventListener{
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    for (commentSnapshot in snapshot.children){
-                        val commentsModel = commentSnapshot.getValue<CommentsModel>(CommentsModel::class.java)
+                    for (commentSnapshot in snapshot.children) {
+                        val commentsModel =
+                            commentSnapshot.getValue<CommentsModel>(CommentsModel::class.java)
                         mCommentsModel.add(commentsModel!!)
                     }
                     listener.onCommentsLoadSuccess(mCommentsModel)
@@ -90,14 +90,14 @@ class CommentsFragment : BottomSheetDialogFragment(), ICommentCallBackListener {
     }
 
     override fun onCommentsLoadFailed(message: String) {
-        Snackbar.make(requireView(), ""+message, Snackbar.LENGTH_LONG).show()
+        Snackbar.make(requireView(), "" + message, Snackbar.LENGTH_LONG).show()
         //dismiss progress bar
     }
 
-    companion object{
+    companion object {
         private var instance: CommentsFragment? = null
 
-        fun getInstance(): CommentsFragment{
+        fun getInstance(): CommentsFragment {
             if (instance == null)
                 instance = CommentsFragment()
             return instance!!

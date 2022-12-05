@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="@dimen/order_success_card_corner_radius"
+    android:layout_margin="@dimen/order_success_card_margin"
+    app:cardElevation="@dimen/order_success_card_elevation"
+    android:theme="@style/Theme.TrillEcommerce">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/order_success_card_padding">
+
+        <TextView
+            android:id="@+id/etaTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/order_success_title_text"
+            android:textColor="@color/text_default"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/etaTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/colby_bold"
+            tools:text="11:11 AM"
+            android:layout_marginTop="@dimen/order_success_time_margin_top"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/order_success_time_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etaTitle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/etaDescription"
+            app:layout_constraintTop_toBottomOf="@id/etaTime"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="12sp"
+            android:fontFamily="@font/opensans_regular"
+            android:text="@string/order_success_eta_description"/>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/order_success_progress_bar_margin_top"
+            app:trackThickness="@dimen/order_success_progress_bar_thickness"
+            app:trackCornerRadius="@dimen/order_success_progress_bar_corner_radius"
+            android:progress="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etaDescription" />
+
+        <TextView
+            android:id="@+id/etaSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/order_success_body_margin_top"
+            android:textColor="@color/text_default"
+            android:text="@string/order_success_body_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progressBar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
