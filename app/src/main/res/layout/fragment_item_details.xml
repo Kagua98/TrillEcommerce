@@ -111,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:paddingStart="@dimen/item_details_product_title_padding"
-                    android:text="Ksh 20,000"
+                    tools:text="Ksh 20,000 (Inclusive VAT)"
                     android:textColor="@android:color/holo_orange_dark"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/title" />

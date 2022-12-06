@@ -1,7 +1,9 @@
 package com.trill.ecommerce.screens.account.contactsupport
 
+import android.content.ContentValues
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +16,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.progressindicator.CircularProgressIndicatorSpec
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.trill.ecommerce.R
 import com.trill.ecommerce.databinding.FragmentContactSupportBinding
 import com.trill.ecommerce.util.ui.LoadingFragment
@@ -31,6 +40,12 @@ class ContactSupportFragment : Fragment() {
     private lateinit var loadingFragmentHelper: LoadingFragment.LoadingFragmentHelper
 
     private var progressBar: CircularProgressIndicator? = null
+
+    private lateinit var auth: FirebaseAuth
+
+    private var userphone: String? = null
+    private var userEmail: String? = null
+    private var userName: String? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -61,6 +76,11 @@ class ContactSupportFragment : Fragment() {
     }
 
     private fun initViews(root: View) {
+        // Initialize Firebase Auth
+        auth = Firebase.auth
+
+        populateFields()
+
         val phone: ImageView? = root.findViewById(R.id.phone)
         phone!!.setOnClickListener {
             val contactsDialog = ContactsModalFragment.getInstance()
@@ -83,6 +103,41 @@ class ContactSupportFragment : Fragment() {
         }
 
 
+    }
+
+    private fun populateFields() {
+        // Write a message to the database
+        val uid = auth.currentUser!!.uid
+        val database = Firebase.database
+        val reference = database.getReference("Users").child(uid)
+
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                showLoading(false)
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+                val map: Map<String, Any> = snapshot.value as Map<String, Any>
+                val name = map["name"]
+                val phone = map["phone"]
+                val email = map["email"]
+                val address = map["address"]
+                val contact = map["contact"]
+                val pin = map["pin"]
+
+                userphone = phone.toString()
+                userEmail = email.toString()
+                userName = name.toString()
+
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(ContentValues.TAG, "Failed to read value. Error details -> ${error.toException().message}")
+            }
+
+        })
     }
 
     override fun onDetach() {
@@ -126,7 +181,7 @@ class ContactSupportFragment : Fragment() {
             val mimeMessage = MimeMessage(session)
             mimeMessage.addRecipient(Message.RecipientType.TO, InternetAddress(stringReceiverEmail))
             mimeMessage.subject = "Trill Customer Feedback Android"
-            mimeMessage.setText(message)
+            mimeMessage.setText("${message} \n\nCompany Name: $userName\nCompany Email: $userEmail\nCompany Phone: $userphone")
             val thread = Thread {
                 try {
                     Transport.send(mimeMessage)

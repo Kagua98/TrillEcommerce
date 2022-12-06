@@ -10,7 +10,7 @@
     <string name="company_title">TRILL</string>
     <string name="company_subtitle">Professional Audio.</string>
     <string name="instagram_account_link">http://instagram.com/_u/trill</string>
-    <string name="facebook_account_link">https://www.facebook.com/trill/</string>
+    <string name="facebook_account_link">https://www.facebook.com/people/Trill-speakers-kenya/100064104672545/</string>
     <string name="twitter_account_link">https://twitter.com/trill</string>
     <string name="tiktok_account_link">https://www.tiktok.com/@trills</string>
     <string name="contact_support_email_recipient">markkagua@gmail.com</string>
@@ -123,7 +123,7 @@
     <string name="contact_support_button_text">Send Feedback</string>
     <string name="contact_support_empty_message_error">Oops! Can\'t send an empty message.</string>
     <string name="contact_support_modal_title">Call Us</string>
-    <string name="contact_support_modal_subtitle">We are available on Mondays - Friday between 8:00AM to 5:00PM</string>
+    <string name="contact_support_modal_subtitle">We are available on Mondays - Saturday between 8:30AM to 5:00PM</string>
     <string name="contact_support_modal_phone_link">or</string>
     <string name="contact_support_modal_phone_icon">📞</string>
 
@@ -157,7 +157,7 @@
     <string-array name="payment_methods">
         <item>Cash</item>
         <item>M-PESA</item>
-        <item>Bank</item>
+   <!--     <item>Bank</item>   -->
     </string-array>
 
 

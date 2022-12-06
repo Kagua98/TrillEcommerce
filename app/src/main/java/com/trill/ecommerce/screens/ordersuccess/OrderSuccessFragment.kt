@@ -24,8 +24,13 @@ import com.trill.ecommerce.R
 import com.trill.ecommerce.databinding.FragmentOrderSuccessBinding
 import com.trill.ecommerce.screens.account.contactsupport.ContactsModalFragment
 import com.trill.ecommerce.util.ui.LoadingFragment
+import nl.dionsegijn.konfetti.core.Party
+import nl.dionsegijn.konfetti.core.Position
+import nl.dionsegijn.konfetti.core.emitter.Emitter
+import nl.dionsegijn.konfetti.xml.KonfettiView
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 
 
@@ -41,6 +46,8 @@ class OrderSuccessFragment : Fragment() {
     private var timeText: TextView? = null
     private var addressText: TextView? = null
     private var progressBar: LinearProgressIndicator? = null
+
+    private var konfettiView: KonfettiView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,6 +75,7 @@ class OrderSuccessFragment : Fragment() {
         addressText = root.findViewById(R.id.addressText)
         progressBar = root.findViewById(R.id.progressBar)
 
+        konfettiView = root.findViewById(R.id.KonfettiView)
 
         val countDownTimer: CountDownTimer = object : CountDownTimer(10000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -78,6 +86,8 @@ class OrderSuccessFragment : Fragment() {
             override fun onFinish() {}
         }
         countDownTimer.start()
+
+        showCelebration()
 
         setETATime(root)
 
@@ -132,7 +142,19 @@ class OrderSuccessFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        // binding.buttonPrimary.isEnabled = !isLoading
         loadingFragmentHelper.showLoading(isLoading)
+    }
+
+    private fun showCelebration() {
+        val party = Party(
+            speed = 0f,
+            maxSpeed = 30f,
+            damping = 0.9f,
+            spread = 360,
+            colors = listOf(0xfce18a, 0xff726d, 0xf4306d, 0xb48def),
+            emitter = Emitter(duration = 400, TimeUnit.MILLISECONDS).max(100),
+            position = Position.Relative(0.5, 0.3)
+        )
+        konfettiView?.start(party)
     }
 }

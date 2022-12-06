@@ -59,7 +59,7 @@ class OrderAdapter(
 
         holder.textLocation!!.text = orderList[position].shippingAddress!!
         holder.textContactPerson!!.text = orderList[position].userName!!
-        holder.textAmount!!.text = "Ksh ${"%, d".format(orderList[position].totalPayment)}"
+        holder.textAmount!!.text = "Ksh${"%, d".format(orderList[position].totalPayment)}"
 
         holder.textTime!!.text = orderList[position].time!!
 

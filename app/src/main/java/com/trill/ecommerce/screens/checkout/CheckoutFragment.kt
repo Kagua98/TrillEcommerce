@@ -233,9 +233,7 @@ class CheckoutFragment : Fragment() {
                 .setTimeFormat(clockFormat)
                 .setHour(12)
                 .setMinute(0)
-            //    .setTheme(R.style.MaterialTimePickerTheme)
                 .setTitleText("Set Delivery Time")
-                //    .setTheme(R.style.MaterialCalendarTheme)
                 .build()
             picker.show(childFragmentManager, "TAG")
 

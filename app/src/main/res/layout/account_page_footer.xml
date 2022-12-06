@@ -59,6 +59,7 @@
             android:layout_width="@dimen/socials_button_size"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:visibility="gone"
             android:contentDescription="@string/account_footer_twitter"
             android:src="@drawable/button_social_twitter" />
 
@@ -71,6 +72,7 @@
             android:layout_width="@dimen/socials_button_size"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:visibility="gone"
             android:contentDescription="@string/account_footer_tiktok"
             android:src="@drawable/button_social_tiktok" />
 

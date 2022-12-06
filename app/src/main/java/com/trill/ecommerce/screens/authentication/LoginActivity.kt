@@ -88,13 +88,14 @@ class LoginActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         showLoading(false)
                         // Sign in success, update UI with the signed-in user's information
-                        Toast.makeText(this, "signInWithEmail:success", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Signed in successfully", Toast.LENGTH_SHORT).show()
                         val user = auth.currentUser!!.uid
                         Log.i("Uid", user)
                         //   updateUI(user)
                         navigateToHomeActivity()
                     } else {
                         // If sign in fails, display a message to the user.
+                        showLoading(false)
                         Toast.makeText(
                             baseContext, "Authentication failed. User does not exist",
                             Toast.LENGTH_SHORT

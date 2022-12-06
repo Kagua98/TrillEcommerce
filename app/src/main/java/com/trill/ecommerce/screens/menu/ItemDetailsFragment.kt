@@ -345,7 +345,7 @@ class ItemDetailsFragment : Fragment() {
     private fun populateFields(it: MenuItemsModel?) {
         Glide.with(requireContext()).load(it!!.image).into(binding.imageView)
         binding.title.text = it.name
-        binding.price.text =  "Ksh${"%, d".format(it!!.price)}"   //"KSh ${it!!.price.toString()}"
+        binding.price.text =  "Ksh${"%, d".format(it!!.price)} (Inclusive VAT)"   //"KSh ${it!!.price.toString()}"
         binding.description.text = it.description
 
         binding.ratingBar.rating = it.ratingValue!!.toFloat()

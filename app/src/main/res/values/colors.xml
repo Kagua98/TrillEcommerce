@@ -30,6 +30,7 @@
     <color name="global_navbar_title_color">@color/global_button_color</color>
     <color name="navbar_back_button_color">@color/global_navbar_title_color</color>
     <color name="progress_bar_color">@color/brand_tertiary</color>
+    <color name="navigation_bar_color">@color/white</color>
 
 
     <!-- Home -->
