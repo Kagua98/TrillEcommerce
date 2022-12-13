@@ -13,21 +13,21 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="10dp"
         android:layout_marginStart="16dp"
-        android:contentDescription="@string/profile_navbar_button_back_description"/>
+        android:contentDescription="Back"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="History"
+        android:text="Receipt"
         app:layout_constraintTop_toTopOf="@id/backPressed"
         app:layout_constraintBottom_toBottomOf="@id/backPressed"
         app:layout_constraintStart_toEndOf="@id/backPressed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="@dimen/account_contact_support_navbar_text_size"
+        android:textSize="20sp"
         android:textColor="@color/history_navbar_title_color"
         android:textStyle="bold"
-        android:fontFamily="@font/colby_bold"
+        android:fontFamily="@font/a_love_of_thunder_katia_diamante"
         android:layout_margin="5dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

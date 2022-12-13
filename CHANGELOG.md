@@ -7,6 +7,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Bugfix
 ### Client
 
+# 2.1.1 [09/12/2022]
+- Version (1.0.0 RC2)
+###Fixed
+- Time Picker selecting time with a single 0 instead of two
+- Bug fixes
+
+###Changed
+- In checkout page sales agents list is now dynamic
+- Added M-PESA SDK
+- Added history item click details
+- Removed unused imports and classes
+
 
 # 2.1.0 [06/12/2022]
 - Version (1.0.0 RC1)

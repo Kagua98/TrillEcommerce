@@ -3,6 +3,7 @@ package com.trill.ecommerce.screens.checkout
 import android.Manifest
 import android.app.Activity
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
@@ -20,6 +21,13 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import com.androidstudy.daraja.Daraja
+import com.androidstudy.daraja.DarajaListener
+import com.androidstudy.daraja.model.AccessToken
+import com.androidstudy.daraja.model.LNMExpress
+import com.androidstudy.daraja.model.LNMResult
+import com.androidstudy.daraja.util.Env
+import com.androidstudy.daraja.util.TransactionType
 import com.braintreepayments.api.dropin.DropInRequest
 import com.braintreepayments.api.dropin.DropInResult
 import com.google.android.gms.common.api.ApiException
@@ -29,7 +37,6 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -42,6 +49,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.trill.ecommerce.R
 import com.trill.ecommerce.api.ICloudFunctions
 import com.trill.ecommerce.api.RetrofitCloudClient
@@ -51,6 +59,8 @@ import com.trill.ecommerce.database.CartItem
 import com.trill.ecommerce.database.LocalCartDataSource
 import com.trill.ecommerce.databinding.FragmentCheckoutBinding
 import com.trill.ecommerce.model.OrderModel
+import com.trill.ecommerce.model.SalesAgentModel
+import com.trill.ecommerce.screens.checkout.mpesa.MpesaListener
 import com.trill.ecommerce.util.Common
 import com.trill.ecommerce.util.ui.LoadingFragment
 import io.reactivex.SingleObserver
@@ -58,12 +68,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class CheckoutFragment : Fragment() {
+class CheckoutFragment : Fragment(), MpesaListener {
 
     private var _binding: FragmentCheckoutBinding? = null
     private val binding get() = _binding!!
@@ -101,6 +114,16 @@ class CheckoutFragment : Fragment() {
     private lateinit var root: View
 
     private lateinit var cloudFunctions: ICloudFunctions
+    lateinit var daraja: Daraja
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        //   getDarajaToken()
+    }
+
+    companion object {
+        lateinit var mpesaListener: MpesaListener
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -109,6 +132,8 @@ class CheckoutFragment : Fragment() {
 
         _binding = FragmentCheckoutBinding.inflate(inflater, container, false)
         root = binding.root
+
+        mpesaListener = this
 
         loadingFragmentHelper =
             LoadingFragment.LoadingFragmentHelper(requireActivity().supportFragmentManager)
@@ -120,6 +145,7 @@ class CheckoutFragment : Fragment() {
 
         onBackButtonPressed(root)
 
+        Log.d("TOKEN: ", Common.currentToken)
 
         return root
     }
@@ -144,6 +170,8 @@ class CheckoutFragment : Fragment() {
         addressEditText = root.findViewById(R.id.textInputEditTextAddress)
 
         fetchUserDetails(root)
+
+        initDarajaAPI()
 
         paymentOptionAutoCompleteTextView =
             root.findViewById(R.id.paymentOptionAutoCompleteTextView)
@@ -178,9 +206,9 @@ class CheckoutFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                if (paymentOptionAutoCompleteTextView!!.text!!.toString() == "M-PESA") {
-                    checkoutWithMPesaOption()
-                } else if (paymentOptionAutoCompleteTextView!!.text!!.toString() == "Cash") {
+                if (paymentOptionAutoCompleteTextView!!.text!!.toString() == "Lipa na M-PESA") {
+                    checkoutWithMPesaOptionTrial(root)
+                } else if (paymentOptionAutoCompleteTextView!!.text!!.toString() == "Cash On Delivery") {
                     checkoutWithCODOption(root)
                 } else if (paymentOptionAutoCompleteTextView!!.text!!.toString() == "Bank") {
                     checkoutWithBraintreeOption()
@@ -239,13 +267,31 @@ class CheckoutFragment : Fragment() {
 
             picker.addOnPositiveButtonClickListener {
                 val h = picker.hour
-                val min = picker.minute
+                val min = picker.minute.to2DString()
                 buttonTime!!.text = "$h:$min"
             }
         }
 
         notesEditText = root.findViewById(R.id.notesEditText)
 
+    }
+
+    private fun Int.to2DString(): String {
+        return String.format("%02d", this)
+    }
+
+    private fun initDarajaAPI() {
+        daraja = Daraja.with("Wc4ih7nhJp78aU57LAQulK81I9UiDCkg", "OWXGltKKhlreptXY", Env.SANDBOX,
+            object : DarajaListener<AccessToken> {
+                override fun onResult(result: AccessToken) {
+                    Toast.makeText(requireContext(), result.access_token, Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onError(error: String?) {
+                    Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show()
+                }
+
+            })
     }
 
     private fun fetchUserDetails(root: View) {
@@ -276,7 +322,10 @@ class CheckoutFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.w(ContentValues.TAG, "Failed to read value. Error details -> ${error.toException().message}")
+                Log.w(
+                    ContentValues.TAG,
+                    "Failed to read value. Error details -> ${error.toException().message}"
+                )
             }
 
         })
@@ -322,7 +371,7 @@ class CheckoutFragment : Fragment() {
 
                                 order.cartItemList = cartItemList
                                 order.totalPayment = finalPrice
-                                order.transactionId = "Cash on Delivery"
+                                order.transactionId = Common.createReceiptNumber()
                                 order.isCOD = true
                                 order.orderStatus = 0
 
@@ -346,7 +395,34 @@ class CheckoutFragment : Fragment() {
     }
 
     //M-Pesa
-    private fun checkoutWithMPesaOption(root: View) {
+    private fun checkoutWithMPesaOptionTrial(root: View) {
+
+        val lnmExpress = LNMExpress(
+            "174379",
+            "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",
+            TransactionType.CustomerPayBillOnline,
+            "1",
+            "0714762127",
+            "174379",
+            "0714762127",
+            "https://us-central1-trill-ecommerce.cloudfunctions.net/api/CallbackUrl/",
+            "001ABC",
+            "Goods Payment"
+        )
+
+        daraja.requestMPESAExpress(lnmExpress, object : DarajaListener<LNMResult> {
+            override fun onResult(result: LNMResult) {
+                FirebaseMessaging.getInstance()
+                    .subscribeToTopic(result.CheckoutRequestID.toString())
+            }
+
+            override fun onError(error: String?) {
+                Toast.makeText(requireContext(), "An Error Occurred: $error", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+
+
         val uid = auth.currentUser!!.uid
         compositeDisposable.add(
             cartDataSource!!.getCartItems(uid)
@@ -382,9 +458,7 @@ class CheckoutFragment : Fragment() {
                                 order.isCOD = false
 
                                 //Submit order to Firebase
-                                submitMPesaOrderToFirebase(order) {
-
-                                }
+                                // submitMPesaOrderToFirebase(order) {}
                             }
 
                             override fun onError(e: Throwable) {
@@ -397,6 +471,27 @@ class CheckoutFragment : Fragment() {
 
                 }
         )
+    }
+
+    private fun getDarajaToken() {
+        daraja = Daraja.with(
+            "Wc4ih7nhJp78aU57LAQulK81I9UiDCkg",
+            "OWXGltKKhlreptXY",
+            Env.SANDBOX, //for Test use Env.PRODUCTION when in production
+            object : DarajaListener<AccessToken> {
+                override fun onResult(accessToken: AccessToken) {
+
+                    Toast.makeText(
+                        requireContext(),
+                        "MPESA TOKEN : ${accessToken.access_token}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onError(error: String) {
+
+                }
+            })
     }
 
     //COD - Cash On Delivery
@@ -432,7 +527,7 @@ class CheckoutFragment : Fragment() {
 
                                 order.cartItemList = cartItemList
                                 order.totalPayment = finalPrice
-                                order.transactionId = "Cash on Delivery"
+                                order.transactionId = Common.createReceiptNumber()
                                 order.isCOD = true
 
                                 //Submit order to Firebase
@@ -540,12 +635,33 @@ class CheckoutFragment : Fragment() {
     }
 
     private fun setupSalesPeopleAutoCompleteTextView() {
+        val progressBar = root.findViewById<ProgressBar>(R.id.progressBar)
+        progressBar.visibility = View.VISIBLE
         var salesPeople = resources.getStringArray(R.array.sales_people)
+        val database = Firebase.database
+        val reference = database.getReference(Common.SALES_AGENT_REFERENCE)
 
-        var arrayAdapter =
-            ArrayAdapter(requireContext(), R.layout.sales_people_dropdown_item, salesPeople)
+        val agentsArrayAdapter: ArrayAdapter<String> =
+            ArrayAdapter(requireContext(), R.layout.sales_people_dropdown_item)
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                progressBar.visibility = View.GONE
+                for (itemSnapshot in snapshot.children) {
+                    val agents = itemSnapshot.child("name")
+                        .getValue(String::class.java)
+                    agentsArrayAdapter.add(agents!!)
 
-        salesPeopleAutoCompleteTextView!!.setAdapter(arrayAdapter)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                progressBar.visibility = View.GONE
+                Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_LONG).show()
+            }
+
+        })
+
+        salesPeopleAutoCompleteTextView!!.setAdapter(agentsArrayAdapter)
 
     }
 
@@ -756,12 +872,12 @@ class CheckoutFragment : Fragment() {
 
                                                         //Submit order to Firebase
                                                         submitCashOrderToFirebase(order) {}
+
                                                     }
 
                                                 }, { t: Throwable? ->
                                                     Toast.makeText(
-                                                        requireContext(),
-                                                        t!!.message.toString(),
+                                                        requireContext(), t!!.message.toString(),
                                                         Toast.LENGTH_LONG
                                                     ).show()
                                                 })
@@ -811,6 +927,29 @@ class CheckoutFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun sendingSuccessful(
+        transactionAmount: String,
+        phoneNumber: String,
+        transactionDate: String,
+        MPesaReceiptNo: String
+    ) {
+        CoroutineScope(Dispatchers.Main).launch {
+            Toast.makeText(
+                requireContext(),
+                "Transaction Successful\nM-Pesa Receipt No: $MPesaReceiptNo\nTransaction Date: $transactionDate\nTransacting Phone Number: $phoneNumber\nAmount Transacted: $transactionAmount",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+    override fun sendingFailed(cause: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+            Toast.makeText(
+                requireContext(), "Transaction Failed\nReason: $cause", Toast.LENGTH_LONG
+            ).show()
+        }
     }
 
 

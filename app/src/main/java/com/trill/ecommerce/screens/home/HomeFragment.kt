@@ -127,7 +127,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-
     private fun setUserName(root: View) {
         val userNameTextView = root.findViewById<TextView>(R.id.userName)
         val name = auth.currentUser!!.displayName

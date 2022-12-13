@@ -131,4 +131,10 @@
         android:name="com.trill.ecommerce.screens.history.HistoryFragment"
         android:label="History"
         tools:layout="@layout/fragment_history"/>
+
+    <fragment
+        android:id="@+id/navigation_history_details"
+        android:name="com.trill.ecommerce.screens.history.ReceiptFragment"
+        android:label="Receipt"
+        tools:layout="@layout/fragment_receipt"/>
 </navigation>

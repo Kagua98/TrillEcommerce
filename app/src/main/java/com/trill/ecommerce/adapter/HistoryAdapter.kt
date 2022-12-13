@@ -10,14 +10,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.trill.ecommerce.R
 import com.trill.ecommerce.model.OrderModel
-import org.w3c.dom.Text
+import com.trill.ecommerce.util.Common
+import com.trill.ecommerce.util.HistoryItemClick
+import com.trill.ecommerce.util.MenuCategoryClick
+import com.trill.ecommerce.util.RecyclerItemClickListener
+import org.greenrobot.eventbus.EventBus
 
-class OrderAdapter(
+class HistoryAdapter(
     private val context: Context,
     private val orderList: List<OrderModel>
-): RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
+): RecyclerView.Adapter<HistoryAdapter.OrderViewHolder>() {
 
-    inner class OrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class OrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener{
         internal var imageView: ImageView? = null
         internal var textDate: TextView? = null
         internal var textOrderStatus: TextView? = null
@@ -29,6 +34,12 @@ class OrderAdapter(
         internal var textAmount: TextView? = null
         internal var textTime: TextView? = null
 
+        private var onClickListener: RecyclerItemClickListener? = null
+
+        fun setListener(listener: RecyclerItemClickListener) {
+            this.onClickListener = listener
+        }
+
         init {
             imageView = itemView.findViewById(R.id.imageView)
             textDate = itemView.findViewById(R.id.date)
@@ -39,8 +50,14 @@ class OrderAdapter(
             textTime = itemView.findViewById(R.id.time)
             textAmount = itemView.findViewById(R.id.amount)
 
+            itemView.setOnClickListener(this)
+
             //textOrderNumber = itemView.findViewById(R.id.orderNumber)
 
+        }
+
+        override fun onClick(view: View?) {
+            onClickListener!!.onItemClick(view!!, adapterPosition)
         }
     }
 
@@ -63,6 +80,13 @@ class OrderAdapter(
 
         holder.textTime!!.text = orderList[position].time!!
 
+        holder.setListener(object : RecyclerItemClickListener {
+            override fun onItemClick(view: View, pos: Int) {
+                Common.historyItemSelected = orderList[pos]
+                EventBus.getDefault().postSticky(HistoryItemClick(true, orderList[pos]))
+            }
+
+        })
 
 
     }

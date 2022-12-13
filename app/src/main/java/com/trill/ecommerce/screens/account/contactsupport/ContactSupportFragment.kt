@@ -164,9 +164,9 @@ class ContactSupportFragment : Fragment() {
         val recipientEmail = getString(R.string.contact_support_email_recipient)
 
         try {
-            val stringSenderEmail = "trill.feedback2@gmail.com"
+            val stringSenderEmail = "trill.feedback1@gmail.com"
             val stringReceiverEmail = recipientEmail
-            val stringPasswordSenderEmail = "safabhpqhvucrsfh"
+            val stringPasswordSenderEmail = "heldrboppslefvep"
             val stringHost = "smtp.gmail.com"
             val properties = System.getProperties()
             properties["mail.smtp.host"] = stringHost

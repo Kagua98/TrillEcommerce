@@ -110,13 +110,4 @@ class LoginActivity : AppCompatActivity() {
     private fun showLoading(isLoading: Boolean) {
         loadingFragmentHelper.showLoading(isLoading)
     }
-
-
-    override fun onStop() {
-        //   if (listener != null)
-        //       firebaseAuth.removeAuthStateListener(listener)
-        //   compositeDisposable.clear()
-
-        super.onStop()
-    }
 }

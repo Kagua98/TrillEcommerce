@@ -42,7 +42,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-
+@Suppress("InvalidSetHasFixedSize")
 class CartFragment : Fragment() {
 
     private var _binding: FragmentCartBinding? = null

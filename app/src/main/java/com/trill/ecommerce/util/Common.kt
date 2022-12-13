@@ -15,6 +15,14 @@ object Common {
             .toString()
     }
 
+    fun createReceiptNumber(): String{
+        return StringBuilder()
+            .append(System.currentTimeMillis() % 10000)
+            .append(abs(Random().nextInt()))
+            .toString()
+    }
+
+    val SALES_AGENT_REFERENCE: String = "Agents"
     var currentToken: String = ""
 
     val ORDER_REFERNCE: String = "Orders"
@@ -28,4 +36,6 @@ object Common {
     val COMMENT_REFERENCE: String = "Comments"
     val HOME_ADS_REF: String = "Banner"
     val currentOrder : OrderModel? = null
+
+    var historyItemSelected: OrderModel? = null
 }

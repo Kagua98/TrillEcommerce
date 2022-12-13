@@ -1,6 +1,6 @@
 <resources>
     <!-- Project Level -->
-    <string name="app_name">Trill Ecommerce</string>
+    <string name="app_name">Trill Wholesale</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_home">Home</string>
     <string name="title_cart">Cart</string>
@@ -155,9 +155,9 @@
 
     <!-- Payment Methods -->
     <string-array name="payment_methods">
-        <item>Cash</item>
-        <item>M-PESA</item>
-   <!--     <item>Bank</item>   -->
+        <item>Cash On Delivery</item>
+        <item>Lipa na M-PESA</item>
+       <item>Bank</item>
     </string-array>
 
 

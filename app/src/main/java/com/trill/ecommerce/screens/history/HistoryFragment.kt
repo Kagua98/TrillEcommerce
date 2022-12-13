@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.trill.ecommerce.R
-import com.trill.ecommerce.adapter.OrderAdapter
+import com.trill.ecommerce.adapter.HistoryAdapter
 import com.trill.ecommerce.callback.ILoadOrderCallBackListener
 import com.trill.ecommerce.databinding.FragmentHistoryBinding
 import com.trill.ecommerce.model.HistoryModel
@@ -73,7 +73,7 @@ class HistoryFragment : Fragment(), ILoadOrderCallBackListener {
 
         historyModel.mutableLiveDataOrderList.observe(viewLifecycleOwner, Observer {
             Collections.reverse(it)
-            val adapter = OrderAdapter(requireContext(), it)
+            val adapter = HistoryAdapter(requireContext(), it)
             recyclerView!!.adapter = adapter
         })
 

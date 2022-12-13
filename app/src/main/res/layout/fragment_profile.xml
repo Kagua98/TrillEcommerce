@@ -7,62 +7,67 @@
     android:layout_height="match_parent"
     android:theme="@style/Theme.TrillEcommerce">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <include
+        android:id="@+id/navbar"
+        layout="@layout/navbar_profile"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/navbar_margin_top_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <include
-            android:id="@+id/navbar"
-            layout="@layout/navbar_profile"
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/navbar">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/navbar_margin_top_height"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieAnimationView"
-            android:layout_width="@dimen/account_profile_image_size"
-            android:layout_height="@dimen/account_profile_image_size"
-            android:layout_marginTop="@dimen/profile_image_margin_top"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/navbar"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="false"
-            app:lottie_rawRes="@raw/account" />
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationView"
+                android:layout_width="@dimen/account_profile_image_size"
+                android:layout_height="@dimen/account_profile_image_size"
+                android:layout_marginTop="@dimen/profile_image_margin_top"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/account" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lottieAnimationView">
             <include
                 android:id="@+id/profile_form"
                 layout="@layout/profile_form"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lottieAnimationView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-        </ScrollView>
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/profile_button_margin"
+                android:backgroundTint="@color/profile_button_color"
+                android:fontFamily="@font/colby_bold"
+                android:padding="@dimen/profile_button_padding"
+                android:text="@string/profile_button_text"
+                app:layout_constraintTop_toBottomOf="@id/profile_form"
+                android:textColor="@color/white_smoke"
+                app:cornerRadius="@dimen/profile_button_corner_radius"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/profile_button_margin"
-            android:backgroundTint="@color/profile_button_color"
-            android:fontFamily="@font/colby_bold"
-            android:padding="@dimen/profile_button_padding"
-            android:text="@string/profile_button_text"
-            android:textColor="@color/white_smoke"
-            app:cornerRadius="@dimen/profile_button_corner_radius"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

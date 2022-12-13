@@ -1,0 +1,972 @@
+{
+  "Banner": {
+    "ad_1": {
+      "id": "ad_1",
+      "image": "https://img.freepik.com/free-vector/merry-christmas-wallpaper-design_79603-2129.jpg?w=900&t=st=1669966947~exp=1669967547~hmac=e1a4964ffbb82128ea4d6d40ef6ad7887625b6021a3189f6e51dc0228d253cac",
+      "subtitle": "Wishing you a happy festive season!",
+      "title": "Welcome to Trill!"
+    },
+    "ad_3": {
+      "id": "ad_3",
+      "image": "",
+      "subtitle": "The best wholesalers for professional audio solutions",
+      "title": "We sell at wholesale"
+    }
+  },
+  "Category": {
+    "menu_01": {
+      "image": "https://www.apple.com/v/homepod-mini/g/images/overview/hero_homepod_blue__eobtqej8h9me_large_2x.png",
+      "name": "Rechargeable Speakers",
+      "products": [
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "Room-filling sound. An intelligent assistant.  Control your smart home.  Works seamlessly with iPhone.  Private and secure.",
+          "id": "product_01",
+          "image": "https://www.apple.com/v/homepod-mini/g/images/overview/hero_homepod_blue__eobtqej8h9me_large_2x.png",
+          "name": "Apple Homepod Mini",
+          "price": 40000,
+          "ratingCount": 5,
+          "ratingValue": 1.1875,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        },
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "A bass-heavy audio performance makes it ideal for use outdoors, because during our testing we found it's powerful enough to cut through wind noise. Meanwhile, a clever Automatic Switching feature means it seamlessly becomes part of your Sonos Wi-Fi multi-room setup indoors.",
+          "id": "product_02",
+          "image": "https://cdn.mos.cms.futurecdn.net/vnkTas4JXVdyjQPCezgxJm-1200-80.jpg.webp",
+          "name": "Sonos Roam",
+          "price": 23000,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        },
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "The Micro 2 is a brilliantly pocketable portable speaker that's surprisingly good for music as well as an excellent option for listening to podcasts or just watching TV shows on a mobile device. It's also a great option if you're looking for a stereo pair of speakers for a small room: you can pick up two of these for what you'd pay for one of its better known rivals.",
+          "id": "product_03",
+          "image": "https://cdn.mos.cms.futurecdn.net/iAiLnPZgjuWgK8aUFRrjkA-1200-80.jpg.webp",
+          "name": "Tribit Stormbox Micro 2",
+          "price": 10500,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        },
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "You won't find extra features, like voice assistants or Wi-Fi connectivity, but the Flip 6 sounds so good that you won't miss them. During our testing, we found that its warm, well-balanced audio performance is far more powerful than you might expect from a speaker of this size, and while we felt that trebles can sound a little harsh at higher volumes, you're getting plenty of clarity and detail.",
+          "id": "product_04",
+          "image": "https://cdn.mos.cms.futurecdn.net/m4YiADfrnpsMMixi6Sqtpn-1200-80.jpg.webp",
+          "name": "JBL Flip 6",
+          "price": 13000,
+          "ratingCount": 7,
+          "ratingValue": 0.756547619047619,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        },
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "You won't find extra features, like voice assistants or Wi-Fi connectivity, but the Flip 6 sounds so good that you won't miss them. During our testing, we found that its warm, well-balanced audio performance is far more powerful than you might expect from a speaker of this size, and while we felt that trebles can sound a little harsh at higher volumes, you're getting plenty of clarity and detail.",
+          "id": "product_04",
+          "image": "https://cdn.mos.cms.futurecdn.net/m4YiADfrnpsMMixi6Sqtpn-1200-80.jpg.webp",
+          "name": "JBL Flip 6",
+          "price": 13000,
+          "ratingCount": 7,
+          "ratingValue": 0.756547619047619,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        },
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "You won't find extra features, like voice assistants or Wi-Fi connectivity, but the Flip 6 sounds so good that you won't miss them. During our testing, we found that its warm, well-balanced audio performance is far more powerful than you might expect from a speaker of this size, and while we felt that trebles can sound a little harsh at higher volumes, you're getting plenty of clarity and detail.",
+          "id": "product_04",
+          "image": "https://cdn.mos.cms.futurecdn.net/m4YiADfrnpsMMixi6Sqtpn-1200-80.jpg.webp",
+          "name": "JBL Flip 6",
+          "price": 13000,
+          "ratingCount": 7,
+          "ratingValue": 0.756547619047619,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        },
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "You won't find extra features, like voice assistants or Wi-Fi connectivity, but the Flip 6 sounds so good that you won't miss them. During our testing, we found that its warm, well-balanced audio performance is far more powerful than you might expect from a speaker of this size, and while we felt that trebles can sound a little harsh at higher volumes, you're getting plenty of clarity and detail.",
+          "id": "product_04",
+          "image": "https://cdn.mos.cms.futurecdn.net/m4YiADfrnpsMMixi6Sqtpn-1200-80.jpg.webp",
+          "name": "JBL Flip 6",
+          "price": 13000,
+          "ratingCount": 7,
+          "ratingValue": 0.756547619047619,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        }
+      ]
+    },
+    "menu_02": {
+      "image": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FPassive%20speakers%2FDSC_9532.jpg?alt=media&token=0db6c63f-f17d-48a0-8218-73a6812d3f27",
+      "name": "Passive Speakers",
+      "products": [
+        {
+          "description": "Todo - add description",
+          "id": "passive_01",
+          "image": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FPassive%20speakers%2FDSC_9532.jpg?alt=media&token=0db6c63f-f17d-48a0-8218-73a6812d3f27",
+          "name": "1",
+          "price": 1
+        },
+        {
+          "description": "xx",
+          "id": "passive_02",
+          "image": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FPassive%20speakers%2FDSC_9519.jpg?alt=media&token=a426fae5-8afc-48b2-a544-f8dd3c2aeb86",
+          "name": "2",
+          "price": 1
+        },
+        {
+          "description": "Todo - update",
+          "id": "passive_03",
+          "image": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FPassive%20speakers%2FDSC_9532.jpg?alt=media&token=0db6c63f-f17d-48a0-8218-73a6812d3f27",
+          "name": "3",
+          "price": 1
+        },
+        {
+          "description": "xx",
+          "id": "passive_04",
+          "image": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FPassive%20speakers%2FDSC_9539.jpg?alt=media&token=51508777-6d93-442b-a1d9-8d760dabba79",
+          "name": "4",
+          "price": 1
+        },
+        {
+          "description": "xx",
+          "id": "passive_05",
+          "image": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FPassive%20speakers%2FDSC_9539.jpg?alt=media&token=51508777-6d93-442b-a1d9-8d760dabba79",
+          "name": "5",
+          "price": 1
+        },
+        {
+          "description": "yy",
+          "id": "passive_06",
+          "image": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FPassive%20speakers%2FDSC_9580.jpg?alt=media&token=d16af56a-1fd6-4699-a56a-564c25e6deea",
+          "name": "6",
+          "price": 1
+        },
+        {
+          "description": "yy",
+          "id": "passive_07",
+          "image": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FPassive%20speakers%2FDSC_9590.jpg?alt=media&token=67bebb85-aa10-438b-b6d2-1dd523a05e63",
+          "name": "6",
+          "price": 1
+        },
+        {
+          "description": "zz",
+          "id": "passive_08",
+          "image": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FPassive%20speakers%2FDSC_9590.jpg?alt=media&token=67bebb85-aa10-438b-b6d2-1dd523a05e63",
+          "name": "8",
+          "price": 1
+        },
+        {
+          "description": "bb",
+          "id": "passive_09",
+          "image": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FPassive%20speakers%2FDSC_9597.jpg?alt=media&token=7462f826-7389-43bc-ac89-0d259d324d41",
+          "name": "9",
+          "price": 1
+        },
+        {
+          "description": "bb",
+          "id": "passive_10",
+          "image": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FPassive%20speakers%2FDSC_9600.jpg?alt=media&token=35ca28ed-03f6-4704-9a25-4496765bf766",
+          "name": "10",
+          "price": 1
+        }
+      ]
+    },
+    "menu_03": {
+      "image": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FWireless%20microphones%2FDSC_9570.jpg?alt=media&token=46237d85-bda1-4d72-ac1b-d74bd2a19762",
+      "name": "Wireless Microphones",
+      "products": [
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "x",
+          "id": "wireless_01",
+          "image": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FWireless%20microphones%2FDSC_9570.jpg?alt=media&token=46237d85-bda1-4d72-ac1b-d74bd2a19762",
+          "name": "Wireless Mic 1",
+          "price": 1,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        },
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FWireless%20microphones%2FDSC_9563.jpg?alt=media&token=a7ea41b1-318e-4c6d-8f16-a5878f0eb770",
+          "id": "wireless_02",
+          "image": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FWireless%20microphones%2FDSC_9563.jpg?alt=media&token=a7ea41b1-318e-4c6d-8f16-a5878f0eb770",
+          "name": " Seaton Sound JS12",
+          "price": 1,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        }
+      ]
+    },
+    "menu_04": {
+      "image": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FDSC_9553.jpg?alt=media&token=aeb8b240-7fa1-4878-ad15-af941c4ad8f2",
+      "name": "Speaker Stands",
+      "products": [
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "TODO (Update definition)",
+          "id": "stand_01",
+          "image": "https://firebasestorage.googleapis.com/v0/b/trill-ecommerce.appspot.com/o/Categories%2FDSC_9553.jpg?alt=media&token=aeb8b240-7fa1-4878-ad15-af941c4ad8f2",
+          "name": " Stand",
+          "price": 1,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        }
+      ]
+    },
+    "menu_05": {
+      "image": "https://www.themasterswitch.com/sites/default/files/Roundup%20Images/Subwoofers/RSL%20Speedwoofer%20S10.jpg",
+      "name": "Microphone Stands",
+      "products": [
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "The punchy, weighty sound quality really lends itself to songs, with clear and realistic bass that brings out the detail in kick drums, toms, and bass guitars. It’s no slouch with movies either, but if that’s where you plan on using your sub woofer the most, we’d suggest going for something like the BIC America F12, which is actually a little less expensive. If, however, you plan on using your sub for tunes, then the RSL is unquestionably the best option. You can even make it wireless with an optional $50 module, making it a worthy competitor to the expensive Sonos Sub.",
+          "id": "product_01",
+          "image": "https://www.themasterswitch.com/sites/default/files/Roundup%20Images/Subwoofers/RSL%20Speedwoofer%20S10.jpg",
+          "name": " RSL Speedwoofer 10S ",
+          "price": 45600,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        },
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "This subwoofer offers a polished sound that feels clean and elegant, while still delivering good levels of power. Despite having less than half the wattage of something like the $800 ELAC Debut 2.0 SUB3030, the more affordable Q B12 sub genuinely impressed us with its outstanding and surprisingly subtle audio quality. We also found it a dream to use thanks to the intelligent rear-mounted controls. There’s even a magnetic metal plate that allows you to hide any connecting wires, while still letting you use the crossover and volume dials.",
+          "id": "product_02",
+          "image": "https://www.themasterswitch.com/sites/default/files/Roundup%20Images/Subwoofers/Q%20Acoustics%20Q%20B12.jpg",
+          "name": "Q Acoustics Q B12",
+          "price": 102999,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        },
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "ELAC's super-impressive Debut 2.0 line includes a subwoofer that is easily in our top ten, regardless of room size. At 500 watts RMS and 1,000 peak (full breakdowns of those terms are in our Buying Advice, below), the SUB3030 delivers more than enough grunt, and the bass it puts out is solid and muscular. It satisfies whether you're watching movies, series, or playing games.",
+          "id": "product_03",
+          "image": "https://www.themasterswitch.com/sites/default/files/Roundup%20Images/Subwoofers/ELAC%20Debut%202.0%20SUB3030.jpg",
+          "name": " ELAC Debut 2.0 SUB3030",
+          "price": 75000,
+          "ratingCount": 1,
+          "ratingValue": 5,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        }
+      ]
+    },
+    "menu_06": {
+      "image": "https://virtuosocentral.com/wp-content/uploads/2020/02/Yamaha-STAGEPAS-600BT-1024x683.jpg",
+      "name": "Public Address System",
+      "products": [
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "As a mid-range, small venue PA system the Yamaha Stagepas 400BT is hard to beat. It sounds good, has versatile input options and the bundle comes with stands and cables.",
+          "id": "delights_01",
+          "image": "https://makingmusicpro.com/wp-content/uploads/2019/10/Yamaha-stagepas-400bt.jpg?ezimgfmt=ng:webp/ngcb6",
+          "name": "Yamaha Stagepas 400BT",
+          "price": 99999,
+          "ratingCount": 1,
+          "ratingValue": 5,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        },
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "Assortment of vegetables & nut served with rice and our signature basil blended soup",
+          "id": "delights_02",
+          "image": "https://live.staticflickr.com/65535/48580970921_db7b7dcda8_o.jpg",
+          "name": "LEI CHA",
+          "price": 5,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        },
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "Udon noodle stir fried with blackpepper, soy sauce and mixed vegetables",
+          "id": "delights_03",
+          "image": "https://live.staticflickr.com/65535/48581114642_87ae182fea_o.jpg",
+          "name": "BLACK PEPPER UDON",
+          "price": 5,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        },
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "Stir fried mee in special tomato sauce topped with organic egg",
+          "id": "delights_04",
+          "image": "https://live.staticflickr.com/65535/48580970411_a277a9ab9b_o.jpg",
+          "name": "KWAI FA MEE",
+          "price": 5,
+          "ratingCount": 1,
+          "ratingValue": 5,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        },
+        {
+          "addon": [
+            {
+              "name": "Cheese",
+              "price": 2
+            },
+            {
+              "name": "Rice",
+              "price": 2
+            }
+          ],
+          "description": "Japanese charcoal noodles served with vegetable miso soup",
+          "id": "delights_05",
+          "image": "https://live.staticflickr.com/65535/48580970796_51023352e6_o.jpg",
+          "name": "JAPANESE CHARCOAL SOBA",
+          "price": 5,
+          "ratingCount": 1,
+          "ratingValue": 5,
+          "size": [
+            {
+              "name": "Medium",
+              "price": 1
+            },
+            {
+              "name": "Large",
+              "price": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "Orders": {
+    "1670230381108453656550": {
+      "cartItemList": [
+        {
+          "productID": "product_04",
+          "productImage": "https://cdn.mos.cms.futurecdn.net/m4YiADfrnpsMMixi6Sqtpn-1200-80.jpg.webp",
+          "productName": "JBL Flip 6",
+          "productPrice": 13000,
+          "productQuantity": 1,
+          "uid": "98USqyBcnAMycYgQIrku8TSY2jF2"
+        }
+      ],
+      "cod": true,
+      "date": "05-December-2022",
+      "notes": "",
+      "orderStatus": 1,
+      "shippingAddress": "3rd Floor,Coffee Plaza,Exchange Lane,Haille Selassie Avenue, Nairobi, Kenya",
+      "time": "12:0",
+      "totalPayment": 13000,
+      "transactionId": "Cash on Delivery",
+      "userId": "98USqyBcnAMycYgQIrku8TSY2jF2",
+      "userName": "Apprem Technologies Ltd",
+      "userPhone": "0714762127"
+    },
+    "16702315806601614584326": {
+      "cartItemList": [
+        {
+          "productID": "product_01",
+          "productImage": "https://www.apple.com/v/homepod-mini/g/images/overview/hero_homepod_blue__eobtqej8h9me_large_2x.png",
+          "productName": "Apple Homepod Mini",
+          "productPrice": 40000,
+          "productQuantity": 1,
+          "uid": "OSSIDO9ir4OdbHgsYwNE9mpjBZn2",
+          "userPhone": "0712345678"
+        }
+      ],
+      "cod": true,
+      "date": "07-December-2022",
+      "notes": "",
+      "orderStatus": 0,
+      "shippingAddress": "12 Haile Selassie Ave, Nairobi, Kenya",
+      "time": "8:30",
+      "totalPayment": 40000,
+      "transactionId": "Cash on Delivery",
+      "userId": "OSSIDO9ir4OdbHgsYwNE9mpjBZn2",
+      "userName": "Matrix Telematics Ltd",
+      "userPhone": "0712345678"
+    },
+    "1670231675462758911635": {
+      "cartItemList": [
+        {
+          "productID": "product_01",
+          "productImage": "https://www.apple.com/v/homepod-mini/g/images/overview/hero_homepod_blue__eobtqej8h9me_large_2x.png",
+          "productName": "Apple Homepod Mini",
+          "productPrice": 40000,
+          "productQuantity": 2,
+          "uid": "GygISu5KzKYt5c3IR8DMeEFMmWo1",
+          "userPhone": "0746884353"
+        }
+      ],
+      "cod": true,
+      "date": "06-December-2022",
+      "notes": "",
+      "orderStatus": 0,
+      "shippingAddress": "3rd Floor,Coffee Plaza,Exchange Lane,Haille Selassie Avenue, Nairobi, Kenya",
+      "time": "10:0",
+      "totalPayment": 80000,
+      "transactionId": "Cash on Delivery",
+      "userId": "GygISu5KzKYt5c3IR8DMeEFMmWo1",
+      "userName": "Lemwe",
+      "userPhone": "0746884353"
+    },
+    "16702316994161788008792": {
+      "cartItemList": [
+        {
+          "productID": "product_04",
+          "productImage": "https://cdn.mos.cms.futurecdn.net/m4YiADfrnpsMMixi6Sqtpn-1200-80.jpg.webp",
+          "productName": "JBL Flip 6",
+          "productPrice": 13000,
+          "productQuantity": 1,
+          "uid": "98USqyBcnAMycYgQIrku8TSY2jF2",
+          "userPhone": "0714762127"
+        },
+        {
+          "productID": "product_01",
+          "productImage": "https://www.apple.com/v/homepod-mini/g/images/overview/hero_homepod_blue__eobtqej8h9me_large_2x.png",
+          "productName": "Apple Homepod Mini",
+          "productPrice": 40000,
+          "productQuantity": 1,
+          "uid": "98USqyBcnAMycYgQIrku8TSY2jF2",
+          "userPhone": "0714762127"
+        }
+      ],
+      "cod": true,
+      "date": "05-December-2022",
+      "notes": "",
+      "orderStatus": 0,
+      "shippingAddress": "12 Haile Selassie Ave, Nairobi, Kenya",
+      "time": "12:0",
+      "totalPayment": 53000,
+      "transactionId": "Cash on Delivery",
+      "userId": "98USqyBcnAMycYgQIrku8TSY2jF2",
+      "userName": "Apprem Technologies Ltd",
+      "userPhone": "0714762127"
+    },
+    "16702352509931688590044": {
+      "cartItemList": [
+        {
+          "productID": "product_02",
+          "productImage": "https://cdn.mos.cms.futurecdn.net/2Xik7B9AM2rzfHG6DLjW9E-1200-80.jpg.webp",
+          "productName": "Yamaha Stagepas 1K",
+          "productPrice": 145000,
+          "productQuantity": 1,
+          "uid": "OSSIDO9ir4OdbHgsYwNE9mpjBZn2",
+          "userPhone": "0712345670"
+        }
+      ],
+      "cod": true,
+      "date": "05-December-2022",
+      "notes": "Please deliver on time",
+      "orderStatus": 2,
+      "shippingAddress": "3rd Floor,Coffee Plaza,Exchange Lane,Haille Selassie Avenue, Nairobi, Kenya",
+      "time": "12:0",
+      "totalPayment": 145000,
+      "transactionId": "Cash on Delivery",
+      "userId": "OSSIDO9ir4OdbHgsYwNE9mpjBZn2",
+      "userName": "Matrix Telematics Ltd",
+      "userPhone": "0712345670"
+    },
+    "16702357808941053224009": {
+      "cartItemList": [
+        {
+          "productID": "product_01",
+          "productImage": "https://www.apple.com/v/homepod-mini/g/images/overview/hero_homepod_blue__eobtqej8h9me_large_2x.png",
+          "productName": "Apple Homepod Mini",
+          "productPrice": 40000,
+          "productQuantity": 1,
+          "uid": "OSSIDO9ir4OdbHgsYwNE9mpjBZn2",
+          "userPhone": "0712345670"
+        }
+      ],
+      "cod": true,
+      "date": "05-December-2022",
+      "notes": "",
+      "orderStatus": 0,
+      "shippingAddress": "3rd Floor,Coffee Plaza,Exchange Lane,Haille Selassie Avenue, Nairobi, Kenya",
+      "time": "12:0",
+      "totalPayment": 40000,
+      "transactionId": "Cash on Delivery",
+      "userId": "OSSIDO9ir4OdbHgsYwNE9mpjBZn2",
+      "userName": "Matrix Telematics Ltd",
+      "userPhone": "0712345670"
+    },
+    "16702358817561369563779": {
+      "cartItemList": [
+        {
+          "productID": "product_01",
+          "productImage": "https://www.themasterswitch.com/sites/default/files/Roundup%20Images/Subwoofers/KEF%20KC62.jpg",
+          "productName": " KEF KC62",
+          "productPrice": 180000,
+          "productQuantity": 1,
+          "uid": "OSSIDO9ir4OdbHgsYwNE9mpjBZn2",
+          "userPhone": "0712345670"
+        }
+      ],
+      "cod": true,
+      "date": "05-December-2022",
+      "notes": "",
+      "orderStatus": 0,
+      "shippingAddress": "3rd Floor,Coffee Plaza,Exchange Lane,Haille Selassie Avenue, Nairobi, Kenya",
+      "time": "12:0",
+      "totalPayment": 180000,
+      "transactionId": "Cash on Delivery",
+      "userId": "OSSIDO9ir4OdbHgsYwNE9mpjBZn2",
+      "userName": "Matrix Telematics Ltd",
+      "userPhone": "0712345670"
+    },
+    "16702420893041736825252": {
+      "cartItemList": [
+        {
+          "productID": "product_04",
+          "productImage": "https://cdn.mos.cms.futurecdn.net/m4YiADfrnpsMMixi6Sqtpn-1200-80.jpg.webp",
+          "productName": "JBL Flip 6",
+          "productPrice": 13000,
+          "productQuantity": 1,
+          "uid": "98USqyBcnAMycYgQIrku8TSY2jF2",
+          "userPhone": "0714762127"
+        }
+      ],
+      "cod": true,
+      "date": "05-December-2022",
+      "notes": "",
+      "orderStatus": 0,
+      "shippingAddress": "12 Haile Selassie Ave, Nairobi, Kenya",
+      "time": "12:0",
+      "totalPayment": 13000,
+      "transactionId": "Cash on Delivery",
+      "userId": "98USqyBcnAMycYgQIrku8TSY2jF2",
+      "userName": "Apprem Technologies Ltd",
+      "userPhone": "0714762127"
+    },
+    "16702485737281590331919": {
+      "cartItemList": [
+        {
+          "productID": "product_01",
+          "productImage": "https://www.apple.com/v/homepod-mini/g/images/overview/hero_homepod_blue__eobtqej8h9me_large_2x.png",
+          "productName": "Apple Homepod Mini",
+          "productPrice": 40000,
+          "productQuantity": 1,
+          "uid": "URGGfxmoglMs5KH2hQJNKH15Qn12",
+          "userPhone": "0726012222"
+        }
+      ],
+      "cod": true,
+      "date": "05-December-2022",
+      "notes": "",
+      "orderStatus": 2,
+      "shippingAddress": "Nairobi",
+      "time": "12:30",
+      "totalPayment": 40000,
+      "transactionId": "Cash on Delivery",
+      "userId": "URGGfxmoglMs5KH2hQJNKH15Qn12",
+      "userName": "Incredible Sounds Ltd",
+      "userPhone": "0726012222"
+    },
+    "16702492030071287729261": {
+      "cartItemList": [
+        {
+          "productID": "product_04",
+          "productImage": "https://cdn.mos.cms.futurecdn.net/m4YiADfrnpsMMixi6Sqtpn-1200-80.jpg.webp",
+          "productName": "JBL Flip 6",
+          "productPrice": 13000,
+          "productQuantity": 1,
+          "uid": "URGGfxmoglMs5KH2hQJNKH15Qn12",
+          "userPhone": "0726012222"
+        }
+      ],
+      "cod": true,
+      "date": "05-December-2022",
+      "notes": "",
+      "orderStatus": 0,
+      "shippingAddress": "Nairobi",
+      "time": "12:0",
+      "totalPayment": 13000,
+      "transactionId": "Cash on Delivery",
+      "userId": "URGGfxmoglMs5KH2hQJNKH15Qn12",
+      "userName": "Incredible Sounds Ltd",
+      "userPhone": "0726012222"
+    },
+    "1670249203190780859582": {
+      "cartItemList": [
+        {
+          "productID": "product_04",
+          "productImage": "https://cdn.mos.cms.futurecdn.net/m4YiADfrnpsMMixi6Sqtpn-1200-80.jpg.webp",
+          "productName": "JBL Flip 6",
+          "productPrice": 13000,
+          "productQuantity": 1,
+          "uid": "URGGfxmoglMs5KH2hQJNKH15Qn12",
+          "userPhone": "0726012222"
+        }
+      ],
+      "cod": true,
+      "date": "05-December-2022",
+      "notes": "",
+      "orderStatus": 0,
+      "shippingAddress": "Nairobi",
+      "time": "12:0",
+      "totalPayment": 13000,
+      "transactionId": "Cash on Delivery",
+      "userId": "URGGfxmoglMs5KH2hQJNKH15Qn12",
+      "userName": "Incredible Sounds Ltd",
+      "userPhone": "0726012222"
+    },
+    "16702699018041631431961": {
+      "cartItemList": [
+        {
+          "productID": "product_01",
+          "productImage": "https://www.apple.com/v/homepod-mini/g/images/overview/hero_homepod_blue__eobtqej8h9me_large_2x.png",
+          "productName": "Apple Homepod Mini",
+          "productPrice": 40000,
+          "productQuantity": 1,
+          "uid": "URGGfxmoglMs5KH2hQJNKH15Qn12",
+          "userPhone": "0726012222"
+        },
+        {
+          "productID": "product_02",
+          "productImage": "https://cdn.mos.cms.futurecdn.net/vnkTas4JXVdyjQPCezgxJm-1200-80.jpg.webp",
+          "productName": "Sonos Roam",
+          "productPrice": 23000,
+          "productQuantity": 1,
+          "uid": "URGGfxmoglMs5KH2hQJNKH15Qn12",
+          "userPhone": "0726012222"
+        }
+      ],
+      "cod": true,
+      "date": "05-December-2022",
+      "notes": "",
+      "orderStatus": 0,
+      "shippingAddress": "1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA",
+      "time": "12:0",
+      "totalPayment": 63000,
+      "transactionId": "18031278636137",
+      "userId": "URGGfxmoglMs5KH2hQJNKH15Qn12",
+      "userName": "Incredible Sounds Ltd",
+      "userPhone": "0726012222"
+    }
+  },
+  "Users": {
+    "98USqyBcnAMycYgQIrku8TSY2jF2": {
+      "address": "Nairobi",
+      "contact": "Kagua",
+      "email": "markkagua@gmail.com",
+      "name": "Apprem Technologies Ltd",
+      "phone": "0714762127",
+      "pin": "A0Z28379482",
+      "uid": "98USqyBcnAMycYgQIrku8TSY2jF2"
+    },
+    "GygISu5KzKYt5c3IR8DMeEFMmWo1": {
+      "address": "Coffee plaza",
+      "contact": "Leen",
+      "email": "leenmwesh@gmail.com",
+      "name": "Lemwe",
+      "phone": "0746884353",
+      "uid": "GygISu5KzKYt5c3IR8DMeEFMmWo1"
+    },
+    "OSSIDO9ir4OdbHgsYwNE9mpjBZn2": {
+      "address": "Coffee Plaza, Haile Selassie Avenue, Nairobi",
+      "contact": "Loreen",
+      "email": "loreen@gmail.com",
+      "name": "Matrix Telematics Ltd",
+      "phone": "0712345670",
+      "pin": "",
+      "uid": "OSSIDO9ir4OdbHgsYwNE9mpjBZn2"
+    },
+    "URGGfxmoglMs5KH2hQJNKH15Qn12": {
+      "address": "Meru",
+      "contact": "Juliet",
+      "email": "ctcafricalife4@gmail.com",
+      "name": "Incredible Sounds Ltd",
+      "phone": "0726012222",
+      "pin": "",
+      "uid": "URGGfxmoglMs5KH2hQJNKH15Qn12"
+    }
+  }
+}

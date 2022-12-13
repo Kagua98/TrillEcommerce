@@ -3,7 +3,6 @@ package com.trill.ecommerce.screens
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -22,10 +21,10 @@ import com.trill.ecommerce.databinding.ActivityHomeBinding
 import com.trill.ecommerce.eventbus.CountCartEvent
 import com.trill.ecommerce.screens.authentication.LoginActivity
 import com.trill.ecommerce.util.Common
+import com.trill.ecommerce.util.HistoryItemClick
 import com.trill.ecommerce.util.MenuCategoryClick
 import com.trill.ecommerce.util.MenuListItemClick
 import com.trill.ecommerce.util.ui.LoadingFragment
-import com.trill.ecommerce.util.ui.SystemBarUtils
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -138,6 +137,13 @@ class HomeActivity : AppCompatActivity() {
     fun onCountCartEvent(event: CountCartEvent) {
         if (event.isSuccess) {
             countCartItem()
+        }
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    fun onHistoryItemSelected(event: HistoryItemClick) {
+        if (event.isSuccess) {
+            findNavController(R.id.nav_host_fragment_activity_home).navigate(R.id.navigation_history_details)
         }
     }
 

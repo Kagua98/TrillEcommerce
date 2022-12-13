@@ -80,6 +80,7 @@
     <color name="order_success_navbar_title_color">@color/global_navbar_title_color</color>
     <color name="order_success_secondary_button">@color/order_success_button_stroke_color</color>
 
+    <color name="history_navbar_title_color">@color/global_navbar_title_color</color>
 
     <!-- TextView -->
     <color name="text_brand_primary">@color/brand_primary</color>
