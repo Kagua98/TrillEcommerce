@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:endIconCheckable="true"
-        app:endIconDrawable="@drawable/ic_location"
+        app:endIconDrawable="@drawable/ic_location_add"
         app:endIconMode="custom"
         app:endIconTint="@color/checkout_location_icon_color">
 
@@ -94,7 +94,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/notesEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:maxLines="5"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>

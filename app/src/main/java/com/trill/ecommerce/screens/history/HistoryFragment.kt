@@ -10,10 +10,12 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.andremion.counterfab.CounterFab
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -45,6 +47,8 @@ class HistoryFragment : Fragment(), ILoadOrderCallBackListener {
 
     private lateinit var loadingFragmentHelper: LoadingFragment.LoadingFragmentHelper
 
+    private var emptyLayout: View? = null
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         hideBottomNavView()
@@ -72,9 +76,17 @@ class HistoryFragment : Fragment(), ILoadOrderCallBackListener {
         loadHistoryFromFirebase(root)
 
         historyModel.mutableLiveDataOrderList.observe(viewLifecycleOwner, Observer {
-            Collections.reverse(it)
-            val adapter = HistoryAdapter(requireContext(), it)
-            recyclerView!!.adapter = adapter
+            if (it == null || it.isEmpty()){
+                emptyLayout!!.visibility = View.VISIBLE
+                recyclerView!!.visibility = View.GONE
+            }else{
+                Collections.reverse(it)
+                val adapter = HistoryAdapter(requireContext(), it)
+
+                recyclerView!!.adapter = adapter
+                emptyLayout!!.visibility = View.GONE
+            }
+
         })
 
         return root
@@ -92,6 +104,12 @@ class HistoryFragment : Fragment(), ILoadOrderCallBackListener {
         loadingFragmentHelper =
             LoadingFragment.LoadingFragmentHelper(requireActivity().supportFragmentManager)
 
+        emptyLayout = root.findViewById(R.id.empty_history_layout)
+
+        val buttonNewOrder: MaterialButton = root.findViewById(R.id.button)
+        buttonNewOrder.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.route_to_menu_fragment_)
+        }
     }
 
     private fun loadHistoryFromFirebase(root: View) {

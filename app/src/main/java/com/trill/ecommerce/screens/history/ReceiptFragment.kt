@@ -63,6 +63,7 @@ class ReceiptFragment : Fragment() {
     private var dateTextView: TextView? = null
     private var timeTextView: TextView? = null
     private var receiptNoTextView: TextView? = null
+    private var paymentMethodTextView: TextView? = null
 
     private lateinit var historyViewModel: HistoryModel
     
@@ -123,6 +124,7 @@ class ReceiptFragment : Fragment() {
         timeTextView = root.findViewById(R.id.time)
         dateTextView = root.findViewById(R.id.date)
         receiptNoTextView = root.findViewById(R.id.receiptNo)
+        paymentMethodTextView = root.findViewById(R.id.paymentMethod)
 
         recyclerView = root.findViewById(R.id.recyclerView)
         recyclerView!!.setHasFixedSize(true)
@@ -242,6 +244,8 @@ class ReceiptFragment : Fragment() {
 
         dateTextView!!.text = it.date
         timeTextView!!.text = it.time
+
+        paymentMethodTextView!!.text = it.paymentMethod
 
         receiptNoTextView!!.text = it.transactionId
 

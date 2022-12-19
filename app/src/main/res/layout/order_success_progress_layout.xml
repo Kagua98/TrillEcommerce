@@ -36,12 +36,23 @@
             app:layout_constraintTop_toBottomOf="@id/etaTitle" />
 
         <TextView
+            android:id="@+id/etaDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="01-January-2023"
+            android:fontFamily="@font/colby_bold"
+            android:textColor="@color/text_default"
+            app:layout_constraintTop_toBottomOf="@id/etaTime"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/etaDescription"
             app:layout_constraintTop_toBottomOf="@id/etaTime"
             app:layout_constraintStart_toStartOf="parent"
             android:textSize="12sp"
+            android:visibility="gone"
             android:fontFamily="@font/opensans_regular"
             android:text="@string/order_success_eta_description"/>
 
@@ -54,7 +65,7 @@
             app:trackCornerRadius="@dimen/order_success_progress_bar_corner_radius"
             android:progress="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etaDescription" />
+            app:layout_constraintTop_toBottomOf="@id/etaDate" />
 
         <TextView
             android:id="@+id/etaSubtitle"

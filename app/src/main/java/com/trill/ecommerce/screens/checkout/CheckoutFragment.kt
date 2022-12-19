@@ -19,7 +19,6 @@ import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.androidstudy.daraja.Daraja
 import com.androidstudy.daraja.DarajaListener
@@ -37,6 +36,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -49,7 +49,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.messaging.FirebaseMessaging
+import com.trill.ecommerce.BuildConfig
 import com.trill.ecommerce.R
 import com.trill.ecommerce.api.ICloudFunctions
 import com.trill.ecommerce.api.RetrofitCloudClient
@@ -59,7 +59,6 @@ import com.trill.ecommerce.database.CartItem
 import com.trill.ecommerce.database.LocalCartDataSource
 import com.trill.ecommerce.databinding.FragmentCheckoutBinding
 import com.trill.ecommerce.model.OrderModel
-import com.trill.ecommerce.model.SalesAgentModel
 import com.trill.ecommerce.screens.checkout.mpesa.MpesaListener
 import com.trill.ecommerce.util.Common
 import com.trill.ecommerce.util.ui.LoadingFragment
@@ -68,15 +67,16 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import org.json.JSONException
+import org.json.JSONObject
 import java.io.IOException
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.concurrent.schedule
 
 
-class CheckoutFragment : Fragment(), MpesaListener {
+class CheckoutFragment : Fragment() {
 
     private var _binding: FragmentCheckoutBinding? = null
     private val binding get() = _binding!!
@@ -89,10 +89,13 @@ class CheckoutFragment : Fragment(), MpesaListener {
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     private var totalAmtTextView: TextView? = null
+    private var totalAmount: String? = null
     private var addressEditText: TextInputEditText? = null
     private var paymentOptionAutoCompleteTextView: AutoCompleteTextView? = null
     private var checkoutButton: MaterialButton? = null
     private var selectedPaymentOption: String? = null
+
+    private var progressBar: CircularProgressIndicator? = null
 
     private var buttonDate: MaterialButton? = null
     private var buttonTime: MaterialButton? = null
@@ -101,8 +104,10 @@ class CheckoutFragment : Fragment(), MpesaListener {
 
     private var salesPeopleAutoCompleteTextView: AutoCompleteTextView? = null
 
+    private var orgName: String? = null
     private var contactName: String? = null
     private var contactPhone: String? = null
+    private var contactAddress: String? = null
 
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
@@ -115,6 +120,9 @@ class CheckoutFragment : Fragment(), MpesaListener {
 
     private lateinit var cloudFunctions: ICloudFunctions
     lateinit var daraja: Daraja
+
+    private var consumerKey: String = ""
+    private var consumerSecret: String = ""
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -132,8 +140,6 @@ class CheckoutFragment : Fragment(), MpesaListener {
 
         _binding = FragmentCheckoutBinding.inflate(inflater, container, false)
         root = binding.root
-
-        mpesaListener = this
 
         loadingFragmentHelper =
             LoadingFragment.LoadingFragmentHelper(requireActivity().supportFragmentManager)
@@ -166,8 +172,12 @@ class CheckoutFragment : Fragment(), MpesaListener {
 
         cartDataSource = LocalCartDataSource(CartDatabase.getInstance(requireContext()).cartDAO())
 
+        progressBar = root.findViewById(R.id.progressBar)
         totalAmtTextView = root.findViewById(R.id.textTotalAmount)
         addressEditText = root.findViewById(R.id.textInputEditTextAddress)
+
+        consumerKey = BuildConfig.CONSUMER_KEY
+        consumerSecret = BuildConfig.CONSUMER_SECRET
 
         fetchUserDetails(root)
 
@@ -207,10 +217,10 @@ class CheckoutFragment : Fragment(), MpesaListener {
                 ).show()
             } else {
                 if (paymentOptionAutoCompleteTextView!!.text!!.toString() == "Lipa na M-PESA") {
-                    checkoutWithMPesaOptionTrial(root)
+                    checkoutWithMPesaOption(root)
                 } else if (paymentOptionAutoCompleteTextView!!.text!!.toString() == "Cash On Delivery") {
                     checkoutWithCODOption(root)
-                } else if (paymentOptionAutoCompleteTextView!!.text!!.toString() == "Bank") {
+                } else if (paymentOptionAutoCompleteTextView!!.text!!.toString() == "Card") {
                     checkoutWithBraintreeOption()
                 } else
                     Toast.makeText(
@@ -281,13 +291,14 @@ class CheckoutFragment : Fragment(), MpesaListener {
     }
 
     private fun initDarajaAPI() {
-        daraja = Daraja.with("Wc4ih7nhJp78aU57LAQulK81I9UiDCkg", "OWXGltKKhlreptXY", Env.SANDBOX,
+        daraja = Daraja.with(consumerKey, consumerSecret, Env.SANDBOX,
             object : DarajaListener<AccessToken> {
                 override fun onResult(result: AccessToken) {
-                    Toast.makeText(requireContext(), result.access_token, Toast.LENGTH_SHORT).show()
+                    Log.i("Access Token: ", result.access_token)
                 }
 
                 override fun onError(error: String?) {
+                    Log.d("Access Token Error: ", error.toString())
                     Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show()
                 }
 
@@ -295,8 +306,6 @@ class CheckoutFragment : Fragment(), MpesaListener {
     }
 
     private fun fetchUserDetails(root: View) {
-        // Write a message to the database
-
         val uid = auth.currentUser!!.uid
         val database = Firebase.database
         val reference = database.getReference("Users").child(uid)
@@ -316,8 +325,15 @@ class CheckoutFragment : Fragment(), MpesaListener {
                 val contact = map["contact"]
                 val pin = map["pin"]
 
-                contactName = name.toString()
+                orgName = name.toString()
+                contactName = contact.toString()
                 contactPhone = phone.toString()
+                contactAddress = address.toString()
+
+                if (contactAddress != null) {
+                    addressEditText!!.setText(contactAddress.toString())
+                }
+
 
             }
 
@@ -332,166 +348,178 @@ class CheckoutFragment : Fragment(), MpesaListener {
     }
 
     private fun checkoutWithBraintreeOption() {
-        val uid = auth.currentUser!!.uid
         //get Token
         val dropInRequest = DropInRequest().clientToken(Common.currentToken)
         startActivityForResult(dropInRequest.getIntent(context), REQUEST_BRAINTREE_CODE)
-
-    }
-
-    private fun checkoutWithMPesaOption() {
-        val uid = auth.currentUser!!.uid
-        compositeDisposable.add(
-            cartDataSource!!.getCartItems(uid)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { cartItemList ->
-
-                    //When we have all the cart items, we will calculate the total price
-                    cartDataSource!!.totalPrice(uid)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(object : SingleObserver<Long> {
-                            override fun onSubscribe(d: Disposable) {
-
-                            }
-
-                            override fun onSuccess(t: Long) {
-                                val finalPrice = t
-                                val order = OrderModel()
-                                order.userId = uid
-                                order.userName = contactName//Common.currentUser!!.name
-                                order.userPhone = contactPhone//Common.currentUser!!.phone
-
-                                order.date = buttonDate!!.text.toString()
-                                order.time = buttonTime!!.text.toString()
-
-                                order.shippingAddress = addressEditText!!.text.toString()
-                                order.notes = notesEditText!!.text.toString()
-
-                                order.cartItemList = cartItemList
-                                order.totalPayment = finalPrice
-                                order.transactionId = Common.createReceiptNumber()
-                                order.isCOD = true
-                                order.orderStatus = 0
-
-                                //Submit order to Firebase
-                                submitMPesaOrderToFirebase(order) {
-
-                                }
-                            }
-
-                            override fun onError(e: Throwable) {
-                                if (!e!!.message!!.contains("Query returned empty"))
-                                    Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG)
-                                        .show()
-                            }
-
-                        })
-
-                }
-        )
-
     }
 
     //M-Pesa
-    private fun checkoutWithMPesaOptionTrial(root: View) {
+    private fun checkoutWithMPesaOption(root: View) {
+        progressBar!!.visibility = View.VISIBLE
+        val passKey = BuildConfig.MPESA_PASS_KEY
 
         val lnmExpress = LNMExpress(
-            "174379",
-            "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",
-            TransactionType.CustomerPayBillOnline,
-            "1",
-            "0714762127",
-            "174379",
-            "0714762127",
-            "https://us-central1-trill-ecommerce.cloudfunctions.net/api/CallbackUrl/",
+            Common.MPESA_BUSINESS_SHORTCODE, //Business Shortcode
+            passKey, //Passkey
+            TransactionType.CustomerPayBillOnline, //Transaction Type
+            totalAmount, //Amount
+            "0714762127", //Phone number (Party A)
+            "174379", //Party B
+            contactPhone, //Phone Number
+            Common.MPESA_CALLBACK_URL, //Callback URL
             "001ABC",
             "Goods Payment"
         )
 
         daraja.requestMPESAExpress(lnmExpress, object : DarajaListener<LNMResult> {
             override fun onResult(result: LNMResult) {
-                FirebaseMessaging.getInstance()
-                    .subscribeToTopic(result.CheckoutRequestID.toString())
+                progressBar!!.visibility = View.GONE
+                requireActivity().runOnUiThread {
+                    Toast.makeText(requireContext(), "Request accepted", Toast.LENGTH_SHORT).show()
+                }
+
+                Timer().schedule(5000) {
+                    run {
+                        try {
+                            progressBar!!.visibility = View.VISIBLE
+                            val jsonString = URL(Common.MPESA_CALLBACK_URL).readText()
+                            Log.d("JSON: ", jsonString)
+
+                            try {
+                                // get JSONObject from JSON file
+                                val jsonObject = JSONObject(jsonString)
+
+                                // fetch Result Description JSONObject
+                                val resultDesc: JSONObject =
+                                    jsonObject.getJSONObject("Body").getJSONObject("stkCallback")
+
+                                //M-Pesa MerchantRequestID
+                                val receiptID = jsonObject.getJSONObject("Body")
+                                    .getJSONObject("stkCallback")
+                                    .getJSONObject("CallbackMetadata")
+                                    .getJSONArray("Item")
+                                    .getJSONObject(1)
+                                    .getString("Value")
+
+                                val resultDescription = resultDesc.getString("ResultDesc")
+
+                                val merchantPhone = jsonObject
+                                    .getJSONObject("Body")
+                                    .getJSONObject("stkCallback")
+                                    .getJSONObject("CallbackMetadata")
+                                    .getJSONArray("Item")
+                                    .getJSONObject(4)
+                                    .getString("Value")
+
+
+                                if (merchantPhone.contains("contactPhone")) {
+                                    if (resultDescription.contains("Success")) {
+                                        Log.d("Success: ", resultDescription)
+
+                                        //checkout
+                                        val uid = auth.currentUser!!.uid
+                                        compositeDisposable.add(
+                                            cartDataSource!!.getCartItems(uid)
+                                                .subscribeOn(Schedulers.io())
+                                                .observeOn(AndroidSchedulers.mainThread())
+                                                .subscribe { cartItemList ->
+
+                                                    //When we have all the cart items, we will calculate the total price
+                                                    cartDataSource!!.totalPrice(uid)
+                                                        .subscribeOn(Schedulers.io())
+                                                        .observeOn(AndroidSchedulers.mainThread())
+                                                        .subscribe(object : SingleObserver<Long> {
+                                                            override fun onSubscribe(d: Disposable) {
+
+                                                            }
+
+                                                            override fun onSuccess(t: Long) {
+                                                                progressBar!!.visibility = View.GONE
+                                                                val finalPrice = t
+                                                                val order = OrderModel()
+                                                                order.userId = uid
+                                                                order.userName = orgName
+                                                                order.userPhone = contactPhone
+                                                                order.contactPerson = contactName
+
+                                                                order.date =
+                                                                    buttonDate!!.text.toString()
+                                                                order.time =
+                                                                    buttonTime!!.text.toString()
+
+                                                                order.shippingAddress =
+                                                                    addressEditText!!.text.toString()
+                                                                order.notes =
+                                                                    notesEditText!!.text.toString()
+
+                                                                order.cartItemList = cartItemList
+                                                                order.totalPayment = finalPrice
+                                                                order.transactionId = receiptID
+                                                                order.isCOD = false
+
+                                                                order.paymentMethod =
+                                                                    "Cash on delivery"
+
+                                                                Common.order_address = addressEditText!!.text.toString()
+                                                                Common.order_time = buttonTime!!.text.toString()
+                                                                Common.order_date = buttonDate!!.text.toString()
+
+                                                                //Submit order to Firebase
+                                                                submitOrderToFirebase(order) {}
+                                                            }
+
+                                                            override fun onError(e: Throwable) {
+                                                                progressBar!!.visibility = View.GONE
+                                                                if (!e.message!!.contains("Query returned empty"))
+                                                                    requireActivity().runOnUiThread {
+                                                                        Toast.makeText(requireContext(), e.message,
+                                                                            Toast.LENGTH_LONG).show()
+                                                                    }
+
+                                                            }
+
+                                                        })
+
+                                                }
+                                        )
+
+
+                                    } else {
+                                        progressBar!!.visibility = View.GONE
+                                        Log.e("Failed: ", resultDescription)
+                                    }
+                                }
+
+
+                            } catch (e: JSONException) {
+                                progressBar!!.visibility = View.GONE
+                                e.printStackTrace()
+                            }
+
+
+                        } catch (e: Exception) {
+                            progressBar!!.visibility = View.GONE
+                            Log.e("Exception: ", e.message.toString())
+                            Toast.makeText(requireContext(), e.message.toString(), Toast.LENGTH_LONG
+                            ).show()
+
+                        }
+
+                    }
+                }
+
             }
 
             override fun onError(error: String?) {
-                Toast.makeText(requireContext(), "An Error Occurred: $error", Toast.LENGTH_SHORT)
-                    .show()
+                progressBar!!.visibility = View.GONE
+                requireActivity().runOnUiThread {
+                    Toast.makeText(requireContext(), "An Error Occurred: $error", Toast.LENGTH_SHORT)
+                        .show()
+                }
+
             }
         })
 
-
-        val uid = auth.currentUser!!.uid
-        compositeDisposable.add(
-            cartDataSource!!.getCartItems(uid)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { cartItemList ->
-
-                    //When we have all the cart items, we will calculate the total price
-                    cartDataSource!!.totalPrice(uid)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(object : SingleObserver<Long> {
-                            override fun onSubscribe(d: Disposable) {
-
-                            }
-
-                            override fun onSuccess(t: Long) {
-                                val finalPrice = t
-                                val order = OrderModel()
-                                order.userId = uid
-                                order.userName = contactName//Common.currentUser!!.name
-                                order.userPhone = contactPhone//Common.currentUser!!.phone
-
-                                order.date = buttonDate!!.text.toString()
-                                order.time = buttonTime!!.text.toString()
-
-                                order.shippingAddress = addressEditText!!.text.toString()
-                                order.notes = notesEditText!!.text.toString()
-
-                                order.cartItemList = cartItemList
-                                order.totalPayment = finalPrice
-                                order.transactionId = "MPESA"
-                                order.isCOD = false
-
-                                //Submit order to Firebase
-                                // submitMPesaOrderToFirebase(order) {}
-                            }
-
-                            override fun onError(e: Throwable) {
-                                if (!e!!.message!!.contains("Query returned empty"))
-                                    Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG)
-                                        .show()
-                            }
-
-                        })
-
-                }
-        )
-    }
-
-    private fun getDarajaToken() {
-        daraja = Daraja.with(
-            "Wc4ih7nhJp78aU57LAQulK81I9UiDCkg",
-            "OWXGltKKhlreptXY",
-            Env.SANDBOX, //for Test use Env.PRODUCTION when in production
-            object : DarajaListener<AccessToken> {
-                override fun onResult(accessToken: AccessToken) {
-
-                    Toast.makeText(
-                        requireContext(),
-                        "MPESA TOKEN : ${accessToken.access_token}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-                override fun onError(error: String) {
-
-                }
-            })
     }
 
     //COD - Cash On Delivery
@@ -516,8 +544,9 @@ class CheckoutFragment : Fragment(), MpesaListener {
                                 val finalPrice = t
                                 val order = OrderModel()
                                 order.userId = uid
-                                order.userName = contactName//Common.currentUser!!.name
+                                order.userName = orgName//Common.currentUser!!.name
                                 order.userPhone = contactPhone//Common.currentUser!!.phone
+                                order.contactPerson = contactName
 
                                 order.date = buttonDate!!.text.toString()
                                 order.time = buttonTime!!.text.toString()
@@ -527,11 +556,17 @@ class CheckoutFragment : Fragment(), MpesaListener {
 
                                 order.cartItemList = cartItemList
                                 order.totalPayment = finalPrice
-                                order.transactionId = Common.createReceiptNumber()
+                                order.transactionId = System.currentTimeMillis().toString()
                                 order.isCOD = true
 
+                                order.paymentMethod = "Cash on delivery"
+
+                                Common.order_address = addressEditText!!.text.toString()
+                                Common.order_time = buttonTime!!.text.toString()
+                                Common.order_date = buttonDate!!.text.toString()
+
                                 //Submit order to Firebase
-                                submitCashOrderToFirebase(order) {
+                                submitOrderToFirebase(order) {
 
                                 }
                             }
@@ -548,7 +583,7 @@ class CheckoutFragment : Fragment(), MpesaListener {
         )
     }
 
-    private fun submitMPesaOrderToFirebase(order: OrderModel, function: () -> Unit) {
+    private fun submitOrderToFirebase(order: OrderModel, function: () -> Unit) {
         val uid = auth.currentUser!!.uid
         FirebaseDatabase.getInstance()
             .getReference(Common.ORDER_REFERNCE)
@@ -574,7 +609,7 @@ class CheckoutFragment : Fragment(), MpesaListener {
                             override fun onSuccess(t: Int) {
 
                                 activity!!.findNavController(id)
-                                    .navigate(R.id.route_to_mpesa_checkout)
+                                    .navigate(R.id.route_to_order_success)
                             }
 
                             override fun onError(e: Throwable) {
@@ -589,55 +624,8 @@ class CheckoutFragment : Fragment(), MpesaListener {
             }
     }
 
-    private fun submitCashOrderToFirebase(order: OrderModel, function: () -> Unit) {
-        val uid = auth.currentUser!!.uid
-        FirebaseDatabase.getInstance()
-            .getReference(Common.ORDER_REFERNCE)
-            .child(Common.createOrderNumber())
-            .setValue(order)
-            .addOnFailureListener { e ->
-                Toast.makeText(
-                    requireContext(),
-                    e.message,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-            .addOnCompleteListener { task ->
-                //Clear cart
-                if (task.isSuccessful) {
-                    cartDataSource!!.cleanCart(uid)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(object : SingleObserver<Int> {
-                            override fun onSubscribe(d: Disposable) {
-                            }
-
-                            override fun onSuccess(t: Int) {
-
-                                lifecycleScope.launchWhenResumed {
-                                    activity!!.findNavController(id)
-                                        .navigate(R.id.route_to_order_success)
-                                }
-
-
-                            }
-
-                            override fun onError(e: Throwable) {
-                                if (!e.message!!.toString().contains("Query returned empty"))
-                                    Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG)
-                                        .show()
-                            }
-
-
-                        })
-                }
-            }
-    }
-
     private fun setupSalesPeopleAutoCompleteTextView() {
-        val progressBar = root.findViewById<ProgressBar>(R.id.progressBar)
-        progressBar.visibility = View.VISIBLE
-        var salesPeople = resources.getStringArray(R.array.sales_people)
+        progressBar!!.visibility = View.VISIBLE
         val database = Firebase.database
         val reference = database.getReference(Common.SALES_AGENT_REFERENCE)
 
@@ -645,7 +633,7 @@ class CheckoutFragment : Fragment(), MpesaListener {
             ArrayAdapter(requireContext(), R.layout.sales_people_dropdown_item)
         reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                progressBar.visibility = View.GONE
+                progressBar!!.visibility = View.GONE
                 for (itemSnapshot in snapshot.children) {
                     val agents = itemSnapshot.child("name")
                         .getValue(String::class.java)
@@ -655,7 +643,7 @@ class CheckoutFragment : Fragment(), MpesaListener {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                progressBar.visibility = View.GONE
+                progressBar!!.visibility = View.GONE
                 Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_LONG).show()
             }
 
@@ -703,8 +691,7 @@ class CheckoutFragment : Fragment(), MpesaListener {
     }
 
     private fun checkGPS() {
-        val progressBar = root.findViewById<ProgressBar>(R.id.progressBar)
-        progressBar.visibility = View.VISIBLE
+        progressBar!!.visibility = View.VISIBLE
         val interval = 5000
         locationRequest =
             LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, interval.toLong())
@@ -728,7 +715,7 @@ class CheckoutFragment : Fragment(), MpesaListener {
 
             } catch (e: ApiException) {
                 //when the gps is off
-                progressBar.visibility = View.GONE
+                progressBar!!.visibility = View.GONE
                 e.printStackTrace()
 
                 when (e.statusCode) {
@@ -768,8 +755,8 @@ class CheckoutFragment : Fragment(), MpesaListener {
             // for ActivityCompat#requestPermissions for more details.
             return
         }
-        val progressBar = root.findViewById<ProgressBar>(R.id.progressBar)
-        progressBar.visibility = View.VISIBLE
+
+        progressBar!!.visibility = View.VISIBLE
 
         fusedLocationProviderClient.lastLocation.addOnCompleteListener { task ->
             val location = task.result
@@ -782,14 +769,14 @@ class CheckoutFragment : Fragment(), MpesaListener {
 
                     val addressLine = address!![0].getAddressLine(0)
 
-                    progressBar.visibility = View.GONE
+                    progressBar!!.visibility = View.GONE
 
                     addressEditText!!.setText(addressLine)
 
                     val address_location = address!![0].getAddressLine(0)
 
                 } catch (e: IOException) {
-                    progressBar.visibility = View.GONE
+                    progressBar!!.visibility = View.GONE
                 }
             }
         }
@@ -808,6 +795,7 @@ class CheckoutFragment : Fragment(), MpesaListener {
                 override fun onSuccess(t: Long) {
                     totalAmtTextView!!.text =
                         "Ksh ${"%, d".format(t).toString()}"  //"Ksh ${t.toString()}"
+                    totalAmount = t.toString()
                 }
 
                 override fun onError(e: Throwable) {
@@ -855,9 +843,10 @@ class CheckoutFragment : Fragment(), MpesaListener {
                                                         val order = OrderModel()
                                                         order.userId = uid
                                                         order.userName =
-                                                            contactName//Common.currentUser!!.name
+                                                            orgName//Common.currentUser!!.name
                                                         order.userPhone =
                                                             contactPhone//Common.currentUser!!.phone
+                                                        order.contactPerson = contactName
 
                                                         order.shippingAddress =
                                                             addressEditText!!.text.toString()
@@ -870,8 +859,15 @@ class CheckoutFragment : Fragment(), MpesaListener {
                                                             brainTreeTransaction.transaction!!.id
                                                         order.isCOD = false
 
+                                                        order.paymentMethod =
+                                                            brainTreeTransaction.transaction!!.type
+
+                                                        Common.order_address = addressEditText!!.text.toString()
+                                                        Common.order_time = buttonTime!!.text.toString()
+                                                        Common.order_date = buttonDate!!.text.toString()
+
                                                         //Submit order to Firebase
-                                                        submitCashOrderToFirebase(order) {}
+                                                        submitOrderToFirebase(order) {}
 
                                                     }
 
@@ -927,29 +923,6 @@ class CheckoutFragment : Fragment(), MpesaListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun sendingSuccessful(
-        transactionAmount: String,
-        phoneNumber: String,
-        transactionDate: String,
-        MPesaReceiptNo: String
-    ) {
-        CoroutineScope(Dispatchers.Main).launch {
-            Toast.makeText(
-                requireContext(),
-                "Transaction Successful\nM-Pesa Receipt No: $MPesaReceiptNo\nTransaction Date: $transactionDate\nTransacting Phone Number: $phoneNumber\nAmount Transacted: $transactionAmount",
-                Toast.LENGTH_LONG
-            ).show()
-        }
-    }
-
-    override fun sendingFailed(cause: String) {
-        CoroutineScope(Dispatchers.Main).launch {
-            Toast.makeText(
-                requireContext(), "Transaction Failed\nReason: $cause", Toast.LENGTH_LONG
-            ).show()
-        }
     }
 
 

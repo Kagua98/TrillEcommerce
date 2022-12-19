@@ -75,7 +75,7 @@
         android:layout_marginTop="@dimen/login_items_margin_top"
         android:hint="@string/login_form_location"
         app:endIconCheckable="true"
-        app:endIconDrawable="@drawable/ic_location"
+        app:endIconDrawable="@drawable/ic_location_edit"
         app:endIconMode="custom"
         app:endIconTint="@color/brand_tertiary">
 

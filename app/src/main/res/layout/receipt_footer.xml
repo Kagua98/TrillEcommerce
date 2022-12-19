@@ -93,6 +93,7 @@
         android:id="@+id/button"
         app:layout_constraintTop_toBottomOf="@id/totalLayout"
         android:padding="16dp"
+        android:visibility="gone"
         android:fontFamily="@font/colby_bold"
         android:layout_marginTop="10dp"/>
 

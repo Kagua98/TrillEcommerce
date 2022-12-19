@@ -75,7 +75,9 @@ class HistoryAdapter(
         holder.textOrderStatus!!.text = convertStatusToText(orderList[position].orderStatus!!)
 
         holder.textLocation!!.text = orderList[position].shippingAddress!!
-        holder.textContactPerson!!.text = orderList[position].userName!!
+
+        holder.textContactPerson!!.text = orderList[position].contactPerson!!
+
         holder.textAmount!!.text = "Ksh${"%, d".format(orderList[position].totalPayment)}"
 
         holder.textTime!!.text = orderList[position].time!!

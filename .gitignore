@@ -93,3 +93,4 @@ app/src/*/play/
 
 .DS_Store
 
+apikeys.properties

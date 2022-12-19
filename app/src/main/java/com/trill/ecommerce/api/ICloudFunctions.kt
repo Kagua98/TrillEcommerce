@@ -1,9 +1,9 @@
 package com.trill.ecommerce.api
 
-import android.database.Observable
+
 import com.trill.ecommerce.model.BrainTreeToken
 import com.trill.ecommerce.model.BrainTreeTransaction
-import io.reactivex.Flowable
+
 
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -17,7 +17,9 @@ interface ICloudFunctions {
 
     @POST("checkout")
     @FormUrlEncoded
-    fun submitPayment(@Field("amount") amount: Long,
-                      @Field("payment_method_nonce") nonce: String) : io.reactivex.Observable<BrainTreeTransaction>
+    fun submitPayment(
+        @Field("amount") amount: Long,
+        @Field("payment_method_nonce") nonce: String
+    ): io.reactivex.Observable<BrainTreeTransaction>
 
 }

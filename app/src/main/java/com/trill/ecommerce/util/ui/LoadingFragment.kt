@@ -12,10 +12,17 @@ import com.trill.ecommerce.R
 
 class LoadingFragment : Fragment() {
     private var previousStatusBarColor = 0
+    private var previousNavBarColor = 0
     override fun onAttach(context: Context) {
         super.onAttach(context)
         previousStatusBarColor = requireActivity().window.statusBarColor
+        previousNavBarColor = requireActivity().window.navigationBarColor
         SystemBarUtils.setStatusBarColor(
+            requireActivity().window,
+            resources.getColor(R.color.greyStatusBar),
+            false
+        )
+        SystemBarUtils.setNavColor(
             requireActivity().window,
             resources.getColor(R.color.greyStatusBar),
             false
@@ -39,6 +46,7 @@ class LoadingFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         SystemBarUtils.setStatusBarColor(requireActivity().window, previousStatusBarColor, false)
+        SystemBarUtils.setNavColor(requireActivity().window, previousNavBarColor, false)
     }
 
     class LoadingFragmentHelper(private val fm: FragmentManager) {

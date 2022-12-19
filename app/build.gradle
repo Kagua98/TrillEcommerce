@@ -5,6 +5,10 @@ plugins {
     id 'kotlin-kapt'
 }
 
+def apikeyPropertiesFile = rootProject.file("apikeys.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
 android {
     namespace 'com.trill.ecommerce'
     compileSdk 32
@@ -17,6 +21,10 @@ android {
         versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "CONSUMER_KEY", apikeyProperties['CONSUMER_KEY'])
+        buildConfigField("String", "CONSUMER_SECRET", apikeyProperties['CONSUMER_SECRET'])
+        buildConfigField("String", "MPESA_PASS_KEY", apikeyProperties['MPESA_PASS_KEY'])
     }
 
     buildTypes {

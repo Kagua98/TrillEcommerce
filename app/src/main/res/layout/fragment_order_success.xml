@@ -7,111 +7,129 @@
     android:theme="@style/Theme.TrillEcommerce"
     tools:context=".screens.ordersuccess.OrderSuccessFragment">
 
-    <nl.dionsegijn.konfetti.xml.KonfettiView
-        android:id="@+id/KonfettiView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <include
         android:id="@+id/navbar"
         layout="@layout/navbar_order_success"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10dp"/>
-
-    <include
-        android:id="@+id/progressLayout"
-        layout="@layout/order_success_progress_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/navbar" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/progressLayout">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/colby_bold"
-            android:text="Delivery Location"
-            android:textColor="@color/text_default" />
-
-        <TextView
-            android:id="@+id/addressText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/colby_bold"
-            android:text="Your given address"
-            android:textColor="@color/text_default"
-            android:textSize="20sp" />
-    </LinearLayout>
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/order_success_lottie"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginBottom="16dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@id/buttonBackToMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/order_success" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonBackToMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/white_smoke"
-        android:fontFamily="@font/colby_bold"
-        android:padding="@dimen/order_success_button_padding"
-        android:text="Back To Menu"
-        android:textColor="@color/order_success_secondary_button"
-        app:cornerRadius="@dimen/order_success_button_corner_radius"
-        app:layout_constraintBottom_toTopOf="@id/buttonBackToHome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:strokeColor="@color/order_success_button_stroke_color"
-        app:strokeWidth="@dimen/order_success_button_stroke_width" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonBackToHome"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/order_success_button_color"
-        android:fontFamily="@font/colby_bold"
-        android:padding="@dimen/order_success_button_padding"
-        android:text="Back to Home Page"
-        android:textColor="@color/white_smoke"
-        app:cornerRadius="@dimen/order_success_button_corner_radius"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/navbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <nl.dionsegijn.konfetti.xml.KonfettiView
+                android:id="@+id/KonfettiView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent" />
 
 
+            <include
+                android:id="@+id/progressLayout"
+                layout="@layout/order_success_progress_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/progressLayout">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/colby_bold"
+                    android:text="@string/order_success_delivery_location_title"
+                    android:textColor="@color/text_default" />
+
+                <TextView
+                    android:id="@+id/addressText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/colby_bold"
+                    android:text="Your given address"
+                    android:textColor="@color/text_default"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/order_success_lottie"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout"
+                app:layout_constraintBottom_toTopOf="@id/buttonBackToMenu"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/order_success" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonBackToMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/white_smoke"
+                android:fontFamily="@font/colby_bold"
+                android:padding="@dimen/order_success_button_padding"
+                android:text="Back To Menu"
+                android:textColor="@color/order_success_secondary_button"
+                app:cornerRadius="@dimen/order_success_button_corner_radius"
+                app:layout_constraintBottom_toTopOf="@id/buttonBackToHome"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:strokeColor="@color/order_success_button_stroke_color"
+                app:strokeWidth="@dimen/order_success_button_stroke_width" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonBackToHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/order_success_button_color"
+                android:fontFamily="@font/colby_bold"
+                android:padding="@dimen/order_success_button_padding"
+                android:text="Back to Home Page"
+                android:textColor="@color/white_smoke"
+                app:cornerRadius="@dimen/order_success_button_corner_radius"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

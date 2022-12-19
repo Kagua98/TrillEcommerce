@@ -28,6 +28,7 @@ class MpesaMessagingService : FirebaseMessagingService()  {
                 val cause = mpesaResponse.body.stkCallback.resultDesc
                 CheckoutFragment.mpesaListener.sendingFailed(cause)
                 Log.d("Messaging Service: ", cause.toString())
+                Log.e("Failed: ", cause)
 
             } else {
                 val infoList: List<Transaction.Body.StkCallback.CallbackMetadata.Item> =
@@ -54,6 +55,10 @@ class MpesaMessagingService : FirebaseMessagingService()  {
                         amountTransacted = transaction.value
                     }
                 }
+
+
+                Log.d("Amount Transacted: ", amountTransacted)
+                Log.d("Receipt No: ", receiptNo)
 
                 CheckoutFragment.mpesaListener.sendingSuccessful(
                     amountTransacted,

@@ -16,5 +16,6 @@ data class OrderModel(
     var orderStatus: Int? = 0,
     var date: String? = null,
     var time: String? = null,
-    var contactPerson: String? = null
+    var contactPerson: String? = null,
+    var paymentMethod: String? = null,
 )

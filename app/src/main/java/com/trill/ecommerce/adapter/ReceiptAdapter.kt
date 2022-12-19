@@ -50,8 +50,8 @@ class ReceiptAdapter(
             .placeholder(R.drawable.art_item_placeholder)
             .into(holder.image!!)
         holder.name!!.text = historyItemsList[position].productName
-        holder.quantity!!.text = historyItemsList[position].productQuantity.toString()
-        holder.price!!.text = historyItemsList[position].productPrice.toString()
+        holder.quantity!!.text = "Quantity: ${historyItemsList[position].productQuantity.toString()}"
+        holder.price!!.text = "Ksh${"%, d".format(historyItemsList[position].productPrice!!.toInt())}"  //historyItemsList[position].productPrice.toString()
     }
 
     override fun getItemCount(): Int {

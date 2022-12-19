@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".screens.tos.TOSFragment">
+    tools:context=".screens.tos.TOSFragment"
+   >
 
     <ImageView
         app:layout_constraintTop_toTopOf="parent"
@@ -15,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@drawable/logo"/>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/logo">
@@ -23,10 +24,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/body"
-
             android:padding="20dp"
             android:text="@string/tos" />
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 

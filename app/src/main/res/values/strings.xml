@@ -62,9 +62,12 @@
 
 
     <!-- Order Success Page -->
-    <string name="order_success_title_text">Order Confirmed At:</string>
+    <string name="order_success_title_text">Delivery Time:</string>
     <string name="order_success_body_text">Your order is confirmed and will be delivered to you soon!</string>
     <string name="order_success_eta_description">Orders within Nairobi may take upto 2 hrs. For orders outside Nairobi expect your delivery in 24hrs*</string>
+    <string name="order_success_delivery_location_title">Delivery Address:</string>
+    <string name="order_success_notification_title">Order Confirmed!</string>
+    <string name="order_success_notification_description">@string/order_success_eta_description</string>
 
     <!-- Account Page -->
     <string name="account_navbar_text">Hey there 👋</string>
@@ -157,14 +160,7 @@
     <string-array name="payment_methods">
         <item>Cash On Delivery</item>
         <item>Lipa na M-PESA</item>
-       <item>Bank</item>
-    </string-array>
-
-
-    <string-array name="sales_people">
-        <item>Juliet</item>
-        <item>Kioko</item>
-        <item>Otieno</item>
+  <!--     <item>Card</item> -->
     </string-array>
 
     <string name="tos">
@@ -189,7 +185,7 @@
         to share with us, but it will generally include your organization name, email address, mobile phone number,
         physical address, pin number and contact person.\n\n
 
-        <b>02. HOW WE USE PERSONAL DATA</b>
+        <b>02. HOW WE USE PERSONAL DATA\n</b>
         We may use Personal Data for the following purposes:\n
         To provide and facilitate your engagement with the Service,
         including to process and provide notifications related to your orders;\n
@@ -205,20 +201,20 @@
         To comply with legal obligations and legal process and to protect our rights,
         privacy, safety or property, and/or that of our affiliates, you or other third parties\n\n
 
-        <b>03. CHILDREN</b>
+        <b>03. CHILDREN\n</b>
         Our Service is not directed to children who are under the age of 18.
         Matrix does not knowingly collect Personal Data from children under the age of 18.
         If you have reason to believe that a child under the age of 18 has provided Personal Data
         to us through the Service please CONTACT US and we will endeavor to delete that
         information from our databases.\n\n
 
-        <b>04. YOUR CHOICES</b>
+        <b>04. YOUR CHOICES\n</b>
         In certain circumstances providing Personal Data is optional.
         However, if you choose not to provide Personal Data that is needed to
         use some features of our Service, you may be unable to use those features.
         You can also CONTACT US to ask us to update or correct your Personal Data.\n\n
 
-        <b>05. CHANGES TO THE PRIVACY POLICY</b>
+        <b>05. CHANGES TO THE PRIVACY POLICY\n</b>
         The Service, and our business may change from time to time.
         As a result, we may change this Privacy Policy at any time.
         When we do, we will post an updated version on this page, unless another type
@@ -227,12 +223,10 @@
         or notified you by other means if applicable, you consent to the revised Privacy Policy
         and practices described in it.\n\n
 
-        <b>06. CONTACT US</b>
+        <b>06. CONTACT US\n</b>
         If you have any questions about our Privacy Policy or information practices,
-        please feel free to contact us at info@matrixtelematics.com\n\n\n\n
+        please feel free to contact us at info@matrixtelematics.com
 
     </string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

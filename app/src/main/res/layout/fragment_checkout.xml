@@ -31,16 +31,6 @@
             android:layout_marginTop="@dimen/cart_recycler_view_margin_top"
             app:layout_constraintTop_toBottomOf="@id/navbar"/>
 
-        <ImageView
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="250dp"
-            android:src="@drawable/x"
-            android:scaleType="fitCenter"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintBottom_toTopOf="@id/divider"/>
-
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"

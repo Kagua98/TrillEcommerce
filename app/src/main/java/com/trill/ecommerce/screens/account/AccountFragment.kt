@@ -195,7 +195,7 @@ class AccountFragment : Fragment() {
     }
 
     private fun hideFAB() {
-        val fab: CounterFab = requireActivity().findViewById(R.id.counterFab)
+        val fab: View = requireActivity().findViewById(R.id.counterFab)
         fab.visibility = View.GONE
     }
 

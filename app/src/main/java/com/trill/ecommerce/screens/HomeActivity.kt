@@ -103,6 +103,7 @@ class HomeActivity : AppCompatActivity() {
                 }, { throwable ->
                     if (!throwable.message.toString().contains("resolve host"))
                         Toast.makeText(this, throwable.message, Toast.LENGTH_LONG).show()
+                    Log.e("Error: ", throwable.message.toString())
                 })
         )
 
