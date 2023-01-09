@@ -21,13 +21,14 @@ class MenuCategoriesAdapter(
 ) :
     RecyclerView.Adapter<MenuCategoriesAdapter.MenuCategoriesViewHolder>() {
 
+    var menuListAdapter: MenuCategoriesNestedAdapter? = null
 
     inner class MenuCategoriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
 
         var parentName: TextView? = null
-        var parentImage: ImageView? = null
-        var parentDescription: TextView? = null
+        var seeMoreText: TextView? = null
+        var recyclerView: RecyclerView? = null
 
 
         private var onClickListener: RecyclerItemClickListener? = null
@@ -38,9 +39,13 @@ class MenuCategoriesAdapter(
 
         init {
             parentName = itemView.findViewById(R.id.title) as TextView
-            parentImage = itemView.findViewById(R.id.imageView) as ImageView
-         // parentDescription = itemView.findViewById(R.id.subtitle) as TextView
-            itemView.setOnClickListener(this)
+            seeMoreText = itemView.findViewById(R.id.subtitle) as TextView
+            recyclerView = itemView.findViewById(R.id.recyclerView) as RecyclerView
+
+
+            seeMoreText!!.setOnClickListener(this)
+        //    itemView.setOnClickListener(this)
+
         }
 
         override fun onClick(view: View?) {
@@ -51,17 +56,15 @@ class MenuCategoriesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuCategoriesViewHolder {
         return MenuCategoriesViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.menu_item, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.menu_item_header, parent, false)
         )
     }
 
     override fun onBindViewHolder(holder: MenuCategoriesViewHolder, position: Int) {
-        Glide.with(context)
-            .load(menuCategoriesList[position].image)
-            .placeholder(R.drawable.art_item_placeholder)
-            .into(holder.parentImage!!)
         holder.parentName!!.text = menuCategoriesList[position].name
-        //  holder.parentDescription!!.text = menuCategoriesList[position].description
+
+        menuListAdapter = MenuCategoriesNestedAdapter(context, menuCategoriesList[position]!!.products!!)
+        holder.recyclerView!!.adapter = menuListAdapter
 
         holder.setListener(object : RecyclerItemClickListener {
             override fun onItemClick(view: View, pos: Int) {

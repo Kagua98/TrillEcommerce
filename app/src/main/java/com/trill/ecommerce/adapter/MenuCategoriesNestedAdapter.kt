@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.trill.ecommerce.R
@@ -15,17 +14,16 @@ import com.trill.ecommerce.database.CartDatabase
 import com.trill.ecommerce.database.LocalCartDataSource
 import com.trill.ecommerce.model.MenuItemsModel
 import com.trill.ecommerce.util.Common
-import com.trill.ecommerce.util.MenuCategoryClick
 import com.trill.ecommerce.util.MenuListItemClick
 import com.trill.ecommerce.util.RecyclerItemClickListener
 import io.reactivex.disposables.CompositeDisposable
 import org.greenrobot.eventbus.EventBus
 
-class MenuListAdapter(
+class MenuCategoriesNestedAdapter(
     internal var context: Context,
     internal var menuItemsList: List<MenuItemsModel>
 ) :
-    RecyclerView.Adapter<MenuListAdapter.MenuListViewHolder>() {
+    RecyclerView.Adapter<MenuCategoriesNestedAdapter.MenuListViewHolder>() {
 
     private val compositeDisposable : CompositeDisposable
     private lateinit var cartDataSource: CartDataSource
@@ -41,9 +39,7 @@ class MenuListAdapter(
 
         var childName: TextView? = null
         var childImage: ImageView? = null
-        var childDescription: TextView? = null
         var childPrice: TextView? = null
-        var favoriteImage: ImageView? = null
 
         private var onClickListener: RecyclerItemClickListener? = null
 
@@ -56,7 +52,6 @@ class MenuListAdapter(
             childName = itemView.findViewById(R.id.title) as TextView
             childImage = itemView.findViewById(R.id.imageView) as ImageView
             childPrice = itemView.findViewById(R.id.price) as TextView
-            favoriteImage = itemView.findViewById(R.id.favorite) as ImageView
             itemView.setOnClickListener(this)
         }
 
@@ -69,7 +64,7 @@ class MenuListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuListViewHolder {
         return MenuListViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.menu_list_item, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.menu_item, parent, false)
         )
     }
 
@@ -97,7 +92,7 @@ class MenuListAdapter(
 
     fun onStop(){
         if (compositeDisposable != null)
-               compositeDisposable.clear()
+            compositeDisposable.clear()
     }
 
 }

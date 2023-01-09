@@ -13,12 +13,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.andremion.counterfab.CounterFab
 import com.google.android.material.snackbar.Snackbar
 import com.trill.ecommerce.R
 import com.trill.ecommerce.adapter.MenuCategoriesAdapter
 import com.trill.ecommerce.databinding.FragmentMenuBinding
+
 import com.trill.ecommerce.util.ui.LoadingFragment
 import com.trill.ecommerce.util.SpaceItemDecoration
 import com.trill.ecommerce.viewmodel.MenuCategoriesViewModel
@@ -100,14 +102,14 @@ class MenuFragment : Fragment() {
 
         recyclerView!!.setHasFixedSize(true)
 
-        val layoutManager = GridLayoutManager(context, 2)
+        val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = RecyclerView.VERTICAL
 
 
-        recyclerView!!.addItemDecoration(SpaceItemDecoration(8))
+     //   recyclerView!!.addItemDecoration(SpaceItemDecoration(8))
         recyclerView!!.layoutManager = layoutManager
 
-        val fab = requireActivity().findViewById<CounterFab>(R.id.counterFab)
+        val fab = requireActivity().findViewById<View>(R.id.counterFab)
         fab.setOnClickListener {
             val navController =
                 requireActivity().findNavController(R.id.nav_host_fragment_activity_home)
