@@ -25,6 +25,7 @@ android {
         buildConfigField("String", "CONSUMER_KEY", apikeyProperties['CONSUMER_KEY'])
         buildConfigField("String", "CONSUMER_SECRET", apikeyProperties['CONSUMER_SECRET'])
         buildConfigField("String", "MPESA_PASS_KEY", apikeyProperties['MPESA_PASS_KEY'])
+        buildConfigField("String", "CALLBACK_URL", apikeyProperties['CALLBACK_URL'])
     }
 
     buildTypes {

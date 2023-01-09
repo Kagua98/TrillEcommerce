@@ -39,7 +39,7 @@ object Common {
 
     var historyItemSelected: OrderModel? = null
 
-    val MPESA_CALLBACK_URL = "https://3a69-197-248-222-13.eu.ngrok.io/callback"
+    val MPESA_CALLBACK_URL = "http://trill-mpesa-callback.matrixtelematic.co.ke/callback"
     val MPESA_BUSINESS_SHORTCODE = "174379"
 
     var order_address: String? = null

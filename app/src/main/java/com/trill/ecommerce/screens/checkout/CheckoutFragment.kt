@@ -10,6 +10,8 @@ import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.format.DateFormat.is24HourFormat
 import android.util.Log
 import android.view.LayoutInflater
@@ -357,6 +359,7 @@ class CheckoutFragment : Fragment() {
     private fun checkoutWithMPesaOption(root: View) {
         progressBar!!.visibility = View.VISIBLE
         val passKey = BuildConfig.MPESA_PASS_KEY
+        val callbackUrl = BuildConfig.CALLBACK_URL
 
         val lnmExpress = LNMExpress(
             Common.MPESA_BUSINESS_SHORTCODE, //Business Shortcode
@@ -434,7 +437,7 @@ class CheckoutFragment : Fragment() {
                                                             }
 
                                                             override fun onSuccess(t: Long) {
-                                                                progressBar!!.visibility = View.GONE
+                                                            //    progressBar!!.visibility = View.GONE
                                                                 val finalPrice = t
                                                                 val order = OrderModel()
                                                                 order.userId = uid
@@ -469,12 +472,14 @@ class CheckoutFragment : Fragment() {
                                                             }
 
                                                             override fun onError(e: Throwable) {
-                                                                progressBar!!.visibility = View.GONE
-                                                                if (!e.message!!.contains("Query returned empty"))
-                                                                    requireActivity().runOnUiThread {
+                                                           //     progressBar!!.visibility = View.GONE
+                                                                if (!e.message!!.contains("Query returned empty")){
+                                                                    Handler(Looper.getMainLooper()).post {
                                                                         Toast.makeText(requireContext(), e.message,
                                                                             Toast.LENGTH_LONG).show()
-                                                                    }
+                                                                }
+                                                                }
+
 
                                                             }
 
@@ -498,10 +503,12 @@ class CheckoutFragment : Fragment() {
 
 
                         } catch (e: Exception) {
-                            progressBar!!.visibility = View.GONE
+                         //   progressBar!!.visibility = View.GONE
                             Log.e("Exception: ", e.message.toString())
-                            Toast.makeText(requireContext(), e.message.toString(), Toast.LENGTH_LONG
-                            ).show()
+
+                            Handler(Looper.getMainLooper()).post {
+                                Toast.makeText(requireContext(), e.message.toString(), Toast.LENGTH_LONG).show()
+                            }
 
                         }
 
@@ -511,11 +518,17 @@ class CheckoutFragment : Fragment() {
             }
 
             override fun onError(error: String?) {
-                progressBar!!.visibility = View.GONE
-                requireActivity().runOnUiThread {
+             //   progressBar!!.visibility = View.GONE
+
+                Handler(Looper.getMainLooper()).post {
                     Toast.makeText(requireContext(), "An Error Occurred: $error", Toast.LENGTH_SHORT)
                         .show()
                 }
+
+             //   requireActivity().runOnUiThread {
+             //       Toast.makeText(requireContext(), "An Error Occurred: $error", Toast.LENGTH_SHORT)
+             //           .show()
+             //   }
 
             }
         })
